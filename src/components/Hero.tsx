@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useReducedMotion } from 'framer-motion';
-import { ArrowRight, Star } from 'lucide-react';
+import { ArrowRight, Github } from 'lucide-react';
 import { Spotlight } from '@/components/ui/Spotlight';
 import { orgUrl } from '@/data/products';
 
@@ -28,7 +28,7 @@ export function Hero() {
         src="/logo.svg"
         alt=""
         aria-hidden="true"
-        className="pointer-events-none absolute -right-24 top-1/2 hidden w-[26rem] -translate-y-1/2 opacity-[0.05] lg:block dark:opacity-[0.06]"
+        className="pointer-events-none absolute right-16 top-1/2 hidden w-[24rem] -translate-y-1/2 opacity-[0.05] lg:block xl:right-28 dark:opacity-[0.06]"
       />
 
       <div className="relative mx-auto max-w-6xl px-4 pb-24 pt-36 sm:px-6 sm:pb-32 sm:pt-44 lg:px-8">
@@ -88,8 +88,8 @@ export function Hero() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-lg border border-[var(--border-strong)] px-6 py-3 font-medium text-[var(--heading)] transition-colors hover:border-[var(--primary)] hover:text-[var(--primary)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--primary)]"
           >
-            <Star className="h-4 w-4" aria-hidden="true" />
-            Star on GitHub
+            <Github className="h-4 w-4" aria-hidden="true" />
+            Follow on GitHub
           </a>
         </motion.div>
 

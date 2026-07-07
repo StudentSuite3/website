@@ -42,12 +42,12 @@ export function Header() {
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <a href="#top" aria-label="StudentSuite home" className="flex items-center">
-          <img src="/logo-lockup.svg" alt="StudentSuite" className="h-8 w-auto dark:hidden" />
+          <img src="/logo-lockup.svg" alt="StudentSuite" className="h-11 w-auto dark:hidden" />
           <img
             src="/logo-lockup-dark.svg"
             alt=""
             aria-hidden="true"
-            className="hidden h-8 w-auto dark:block"
+            className="hidden h-11 w-auto dark:block"
           />
         </a>
 

@@ -2,23 +2,23 @@ import { products, orgUrl } from '@/data/products';
 
 export function Footer() {
   return (
-    <footer className="border-t border-[var(--border)]">
+    <footer className="border-t border-[var(--border)] bg-[var(--card-bg)]">
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="flex flex-col gap-12 md:flex-row md:justify-between">
+        <div className="flex flex-col gap-12 md:flex-row md:items-start md:justify-between">
           <div>
-            <img src="/logo-stacked.svg" alt="StudentSuite" className="h-20 w-auto dark:hidden" />
+            <img src="/logo-lockup.svg" alt="StudentSuite" className="h-12 w-auto dark:hidden" />
             <img
-              src="/logo-stacked-dark.svg"
+              src="/logo-lockup-dark.svg"
               alt=""
               aria-hidden="true"
-              className="hidden h-20 w-auto dark:block"
+              className="hidden h-12 w-auto dark:block"
             />
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-[var(--secondary)]">
+            <p className="mt-5 max-w-xs text-sm leading-relaxed text-[var(--secondary)]">
               Open-source tools that help students plan less and learn more.
             </p>
           </div>
 
-          <div className="flex gap-16">
+          <div className="flex gap-16 sm:gap-24">
             <nav aria-label="Tools">
               <h3 className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--muted)]">
                 Tools
