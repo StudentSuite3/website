@@ -6,9 +6,9 @@ import { orgUrl } from '@/data/products';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
-  { href: '#tools', label: 'Tools' },
-  { href: '#mission', label: 'Mission' },
-  { href: '#contribute', label: 'Contribute' },
+  { href: '/#tools', label: 'Tools' },
+  { href: '/#mission', label: 'Mission' },
+  { href: '/#contribute', label: 'Contribute' },
 ];
 
 export function Header() {
@@ -41,14 +41,11 @@ export function Header() {
       )}
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <a href="#top" aria-label="StudentSuite home" className="flex items-center">
-          <img src="/logo-lockup.svg" alt="StudentSuite" className="h-11 w-auto dark:hidden" />
-          <img
-            src="/logo-lockup-dark.svg"
-            alt=""
-            aria-hidden="true"
-            className="hidden h-11 w-auto dark:block"
-          />
+        <a href="/" aria-label="StudentSuite home" className="flex items-center gap-3">
+          <img src="/logo.svg" alt="" aria-hidden="true" className="h-10 w-10 sm:h-12 sm:w-12" />
+          <span className="font-[family-name:var(--font-space-grotesk)] text-2xl sm:text-3xl font-semibold tracking-tight text-[var(--heading)]">
+            Student<span className="text-[var(--primary)]">Suite</span>
+          </span>
         </a>
 
         <nav className="hidden items-center gap-1 md:flex" aria-label="Primary">
