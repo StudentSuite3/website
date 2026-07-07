@@ -114,17 +114,6 @@ export function Footer() {
           <p className="font-mono text-xs text-[var(--muted)]">
             MIT licensed · built by students, for students
           </p>
-          <p className="text-xs text-[var(--muted)]">
-            Built by{' '}
-            <a
-              href="https://anaydhawan.vercel.app"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-medium text-[var(--secondary)] transition-colors hover:text-[var(--primary)]"
-            >
-              Anay Dhawan
-            </a>
-          </p>
         </div>
       </div>
     </footer>
