@@ -1,0 +1,147 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  /* brand: indigo #4F46E5 · teal #14B8A6 · ink #1A1A2E · light default */
+  --background: #ffffff;
+  --foreground: #3f3f52;
+  --heading: #1a1a2e;
+  --body: #3f3f52;
+  --secondary: #6b6b80;
+  --muted: #9d9dae;
+  --primary: #4f46e5;
+  --primary-strong: #4338ca;
+  --primary-soft: rgba(79, 70, 229, 0.08);
+  --accent: #14b8a6;
+  --accent-strong: #0f9488;
+  --border: #e7e7ef;
+  --border-strong: #d6d6e2;
+  --card-bg: rgba(255, 255, 255, 0.8);
+  --card-border: #e7e7ef;
+  --card-hover-border: #c7c5f4;
+  --card-hover-shadow: 0 12px 32px -12px rgba(79, 70, 229, 0.18);
+  --nav-bg: rgba(255, 255, 255, 0.88);
+  --mobile-bg: rgba(255, 255, 255, 0.97);
+  --grid-line: rgba(79, 70, 229, 0.07);
+  --grid-line-bold: rgba(79, 70, 229, 0.13);
+  --spotlight-fill: #4f46e5;
+  --spotlight-opacity: 0.10;
+  --pill-bg: rgba(20, 184, 166, 0.1);
+  --pill-fg: #0f766e;
+  --mission-bg: #4f46e5;
+  --mission-fg: #ffffff;
+  --mission-muted: rgba(255, 255, 255, 0.72);
+  --mission-accent: #5eead4;
+  --selection-bg: rgba(79, 70, 229, 0.18);
+  --selection-fg: #1a1a2e;
+  --scrollbar-track: #f4f4f8;
+  --scrollbar-thumb: #d6d6e2;
+  --scrollbar-thumb-hover: #b9b9cc;
+}
+
+html.dark {
+  --background: #0e0e1a;
+  --foreground: #c4c4d6;
+  --heading: #f4f4fa;
+  --body: #c4c4d6;
+  --secondary: #8f8fa8;
+  --muted: #63637c;
+  --primary: #818cf8;
+  --primary-strong: #a5b0fb;
+  --primary-soft: rgba(129, 140, 248, 0.1);
+  --accent: #2dd4bf;
+  --accent-strong: #5eead4;
+  --border: #23233a;
+  --border-strong: #31314e;
+  --card-bg: rgba(24, 24, 42, 0.6);
+  --card-border: #23233a;
+  --card-hover-border: #45457a;
+  --card-hover-shadow: 0 12px 32px -12px rgba(129, 140, 248, 0.16);
+  --nav-bg: rgba(14, 14, 26, 0.88);
+  --mobile-bg: rgba(14, 14, 26, 0.97);
+  --grid-line: rgba(129, 140, 248, 0.07);
+  --grid-line-bold: rgba(129, 140, 248, 0.13);
+  --spotlight-fill: #818cf8;
+  --spotlight-opacity: 0.14;
+  --pill-bg: rgba(45, 212, 191, 0.12);
+  --pill-fg: #5eead4;
+  --mission-bg: #1e1b4b;
+  --mission-fg: #f4f4fa;
+  --mission-muted: rgba(244, 244, 250, 0.66);
+  --mission-accent: #5eead4;
+  --selection-bg: rgba(129, 140, 248, 0.3);
+  --selection-fg: #f4f4fa;
+  --scrollbar-track: #14142a;
+  --scrollbar-thumb: #31314e;
+  --scrollbar-thumb-hover: #45457a;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-space-grotesk);
+  --font-mono: var(--font-jetbrains-mono);
+
+  /* aceternity spotlight (sourced via the `components` skill) */
+  --animate-spotlight: spotlight 2.4s ease-out 0.3s 1 forwards;
+}
+
+@keyframes spotlight {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -42%) scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -40%) scale(1);
+  }
+}
+
+/* graph-paper: the student notebook motif */
+.graph-paper {
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(var(--grid-line-bold) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line-bold) 1px, transparent 1px);
+  background-size:
+    24px 24px,
+    24px 24px,
+    120px 120px,
+    120px 120px;
+}
+
+.no-transition * {
+  transition: none !important;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  transition: background 0.2s, color 0.2s;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background-color: var(--selection-bg);
+  color: var(--selection-fg);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
