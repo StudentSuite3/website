@@ -105,6 +105,16 @@ export function Footer() {
                     GitHub
                   </a>
                 </li>
+                <li>
+                  <a
+                    href="https://instagram.com/studentsuite"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-[var(--body)] transition-colors hover:text-[var(--primary)]"
+                  >
+                    Instagram
+                  </a>
+                </li>
               </ul>
             </nav>
           </div>
