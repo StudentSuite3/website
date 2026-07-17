@@ -20,7 +20,7 @@ export const products: Product[] = [
     description:
       'Study spots, exam centres, libraries, and resources that actually matter: vetted, organized, and growing as the community adds to it. Spend less time searching, more time studying.',
     githubUrl: 'https://github.com/StudentSuite/StudyMap',
-    liveUrl: 'https://studymapp.vercel.app',
+    liveUrl: 'https://studyymap.com',
     cta: 'Open the map',
   },
   {

@@ -12,7 +12,7 @@ const description =
   'Free, open tools built around one idea: students deserve better software. Shaped by rigorous programs like IGCSE and IB, but open to any student, anywhere.';
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://studentsuite.dev'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://thestudentsuite.com'),
   title,
   description,
   keywords: ['students', 'open source', 'study tools', 'IB', 'IGCSE', 'StudyMap', 'StudentSuite'],
