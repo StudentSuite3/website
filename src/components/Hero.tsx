@@ -3,15 +3,38 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight, Github } from 'lucide-react';
 import { Spotlight } from '@/components/ui/Spotlight';
+import SplashCursor from '@/components/ui/SplashCursor';
+import { HeroGradient } from '@/components/ui/HeroGradient';
 import { orgUrl } from '@/data/products';
 
 const headline = ['Plan', 'less.', 'Learn', 'more.'];
+
+// Indigo/teal brand splashes (--primary + --accent); RAINBOW off so it stays on-palette.
+const BRAND_PALETTE = ['#4f46e5', '#818cf8', '#14b8a6'];
+// Flowing mesh-gradient hero (indigo/teal mid-lights so it reads in both light + dark).
+const HERO_MESH = ['#4f46e5', '#818cf8', '#14b8a6', '#6366f1'];
 
 export function Hero() {
   const reduceMotion = useReducedMotion();
 
   return (
     <section id="top" className="relative overflow-hidden">
+      {/* animated mesh-gradient hero backdrop (bottom-most layer) */}
+      <HeroGradient
+        colors={HERO_MESH}
+        fallbackClass="bg-gradient-to-br from-[var(--primary)]/25 via-[var(--background)] to-[var(--accent)]/20"
+        scrimClass="bg-[color-mix(in_oklab,var(--background)_68%,transparent)]"
+      />
+
+      {/* interactive fluid-simulation background, scoped to the hero (behind content) */}
+      <SplashCursor
+        RAINBOW_MODE={false}
+        PALETTE={BRAND_PALETTE}
+        SPLAT_FORCE={5000}
+        DENSITY_DISSIPATION={4}
+        WRAPPER_CLASS="absolute inset-0 pointer-events-none"
+      />
+
       {/* graph-paper field, faded out toward the bottom edge */}
       <div
         className="graph-paper absolute inset-0"
