@@ -11,8 +11,8 @@ const headline = ['Plan', 'less.', 'Learn', 'more.'];
 
 // Indigo/teal brand splashes (--primary + --accent); RAINBOW off so it stays on-palette.
 const BRAND_PALETTE = ['#4f46e5', '#818cf8', '#14b8a6'];
-// Flowing mesh-gradient hero (indigo/teal mid-lights so it reads in both light + dark).
-const HERO_MESH = ['#4f46e5', '#818cf8', '#14b8a6', '#6366f1'];
+// Flowing mesh-gradient hero, predominantly purple (violet-heavy with one indigo brand tie).
+const HERO_MESH = ['#7c3aed', '#8b5cf6', '#a855f7', '#4f46e5'];
 
 export function Hero() {
   const reduceMotion = useReducedMotion();
@@ -45,14 +45,6 @@ export function Hero() {
         aria-hidden="true"
       />
       <Spotlight className="-top-40 left-0 md:-top-20 md:left-60" />
-
-      {/* the cap mark, oversized, bleeding off the right edge */}
-      <img
-        src="/logo.svg"
-        alt=""
-        aria-hidden="true"
-        className="pointer-events-none absolute right-16 top-1/2 hidden w-[24rem] -translate-y-1/2 opacity-[0.05] lg:block xl:right-28 dark:opacity-[0.06]"
-      />
 
       <div className="relative mx-auto max-w-6xl px-4 pb-24 pt-36 sm:px-6 sm:pb-32 sm:pt-44 lg:px-8">
         <motion.p
