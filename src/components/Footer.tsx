@@ -1,6 +1,6 @@
 import { products, orgUrl } from '@/data/products';
 
-const contactEmail = 'contact@thestudentsuite.com';
+const contactEmail = 'studentsuite3@gmail.com';
 
 export function Footer() {
   return (
