@@ -89,7 +89,9 @@ export function Footer() {
               <ul className="mt-4 space-y-2.5">
                 <li>
                   <a
-                    href={`mailto:${contactEmail}`}
+                    href="https://mail.google.com/mail/?view=cm&fs=1&to=studentsuite3@gmail.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-sm text-[var(--body)] transition-colors hover:text-[var(--primary)]"
                   >
                     {contactEmail}
