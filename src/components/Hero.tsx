@@ -3,47 +3,34 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight, Github } from 'lucide-react';
 import { Spotlight } from '@/components/ui/Spotlight';
-import SplashCursor from '@/components/ui/SplashCursor';
-import { HeroGradient } from '@/components/ui/HeroGradient';
+import { DotPattern } from '@/components/ui/DotPattern';
+import { ShimmerButton } from '@/components/ui/ShimmerButton';
 import { orgUrl } from '@/data/products';
 
 const headline = ['Plan', 'less.', 'Learn', 'more.'];
-
-// Indigo/teal brand splashes (--primary + --accent); RAINBOW off so it stays on-palette.
-const BRAND_PALETTE = ['#4f46e5', '#818cf8', '#14b8a6'];
-// Flowing mesh-gradient hero, predominantly purple (violet-heavy with one indigo brand tie).
-const HERO_MESH = ['#7c3aed', '#8b5cf6', '#a855f7', '#4f46e5'];
 
 export function Hero() {
   const reduceMotion = useReducedMotion();
 
   return (
     <section id="top" className="relative overflow-hidden">
-      {/* animated mesh-gradient hero backdrop (bottom-most layer) */}
-      <HeroGradient
-        colors={HERO_MESH}
-        fallbackClass="bg-gradient-to-br from-[var(--primary)]/25 via-[var(--background)] to-[var(--accent)]/20"
-        scrimClass="bg-[color-mix(in_oklab,var(--background)_68%,transparent)]"
-      />
+      {/* ambient color wash: pure CSS, slow drift, no canvas (replaces the old WebGL mesh gradient) */}
+      <div className="absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
+        <div className="animate-hero-glow absolute -top-24 left-[8%] h-[28rem] w-[28rem] rounded-full bg-[var(--primary)]/25 blur-3xl motion-reduce:animate-none" />
+        <div className="animate-hero-glow absolute -top-10 right-[6%] h-[24rem] w-[24rem] rounded-full bg-[var(--accent)]/20 blur-3xl [animation-delay:-7s] motion-reduce:animate-none" />
+      </div>
 
-      {/* interactive fluid-simulation background, scoped to the hero (behind content) */}
-      <SplashCursor
-        RAINBOW_MODE={false}
-        PALETTE={BRAND_PALETTE}
-        SPLAT_FORCE={5000}
-        DENSITY_DISSIPATION={4}
-        WRAPPER_CLASS="absolute inset-0 pointer-events-none"
-      />
-
-      {/* graph-paper field, faded out toward the bottom edge */}
+      {/* dot-grid field, faded out toward the bottom edge */}
       <div
-        className="graph-paper absolute inset-0"
+        className="absolute inset-0"
         style={{
           maskImage: 'radial-gradient(ellipse 120% 90% at 50% 0%, black 55%, transparent 100%)',
           WebkitMaskImage: 'radial-gradient(ellipse 120% 90% at 50% 0%, black 55%, transparent 100%)',
         }}
         aria-hidden="true"
-      />
+      >
+        <DotPattern glow={!reduceMotion} className="text-[var(--grid-line-bold)]" />
+      </div>
       <Spotlight className="-top-40 left-0 md:-top-20 md:left-60" />
 
       <div className="relative mx-auto max-w-6xl px-4 pb-24 pt-36 sm:px-6 sm:pb-32 sm:pt-44 lg:px-8">
@@ -87,16 +74,13 @@ export function Hero() {
           transition={{ duration: 0.55, delay: 0.85 }}
           className="mt-10 flex flex-wrap items-center gap-4"
         >
-          <a
-            href="#tools"
-            className="group inline-flex items-center gap-2 rounded-lg bg-[var(--primary)] px-6 py-3 font-medium text-white transition-colors hover:bg-[var(--primary-strong)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--primary)] dark:text-[#0e0e1a]"
-          >
+          <ShimmerButton href="#tools" className="group">
             Explore the tools
             <ArrowRight
               className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
               aria-hidden="true"
             />
-          </a>
+          </ShimmerButton>
           <a
             href={orgUrl}
             target="_blank"

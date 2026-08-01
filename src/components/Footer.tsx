@@ -109,7 +109,7 @@ export function Footer() {
                 </li>
                 <li>
                   <a
-                    href="https://instagram.com/studentsuite"
+                    href="https://instagram.com/student.suite"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-sm text-[var(--body)] transition-colors hover:text-[var(--primary)]"

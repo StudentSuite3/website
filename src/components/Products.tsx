@@ -109,41 +109,56 @@ export function Products() {
             </div>
           </motion.article>
 
-          {/* the two curated collections, compact */}
-          {rest.map((product, i) => (
-            <motion.article
-              key={product.id}
-              {...reveal(0.2 + i * 0.1)}
-              className="group flex flex-col rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] p-7 transition-[border-color,box-shadow] hover:border-[var(--card-hover-border)] hover:shadow-[var(--card-hover-shadow)] lg:col-span-2"
-            >
-              <div className="flex items-center justify-between">
-                <span className="rounded-full bg-[var(--primary-soft)] px-3 py-1 font-mono text-xs font-medium text-[var(--primary)]">
-                  {product.status}
-                </span>
-                <span className="text-xl" aria-hidden="true">
-                  {product.emoji}
-                </span>
-              </div>
-              <h3 className="mt-5 font-heading text-lg font-semibold text-[var(--heading)]">
-                {product.name}
-              </h3>
-              <p className="mt-3 flex-1 text-sm leading-relaxed text-[var(--body)]">
-                {product.description}
-              </p>
-              <a
-                href={product.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group/link mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-[var(--primary)] transition-colors hover:text-[var(--primary-strong)]"
+          {/* the curated collections, compact, stacked in their own sub-grid beside StudyMap */}
+          <div className="contents lg:col-span-2 lg:row-span-2 lg:grid lg:auto-rows-fr lg:grid-cols-1 lg:gap-6">
+            {rest.map((product, i) => (
+              <motion.article
+                key={product.id}
+                {...reveal(0.2 + i * 0.1)}
+                className="group flex flex-col rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] p-7 transition-[border-color,box-shadow] hover:border-[var(--card-hover-border)] hover:shadow-[var(--card-hover-shadow)]"
               >
-                {product.cta}
-                <ArrowUpRight
-                  className="h-4 w-4 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
-                  aria-hidden="true"
-                />
-              </a>
-            </motion.article>
-          ))}
+                <div className="flex items-center justify-between">
+                  <span className="rounded-full bg-[var(--primary-soft)] px-3 py-1 font-mono text-xs font-medium text-[var(--primary)]">
+                    {product.status}
+                  </span>
+                  <span className="text-xl" aria-hidden="true">
+                    {product.emoji}
+                  </span>
+                </div>
+                <h3 className="mt-5 font-heading text-lg font-semibold text-[var(--heading)]">
+                  {product.name}
+                </h3>
+                <p className="mt-3 flex-1 text-sm leading-relaxed text-[var(--body)]">
+                  {product.description}
+                </p>
+                <div className="mt-5 flex items-center gap-4">
+                  <a
+                    href={product.liveUrl ?? product.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group/link inline-flex items-center gap-1.5 text-sm font-medium text-[var(--primary)] transition-colors hover:text-[var(--primary-strong)]"
+                  >
+                    {product.cta}
+                    <ArrowUpRight
+                      className="h-4 w-4 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
+                      aria-hidden="true"
+                    />
+                  </a>
+                  {product.liveUrl && (
+                    <a
+                      href={product.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--secondary)] transition-colors hover:text-[var(--heading)]"
+                    >
+                      <Github className="h-4 w-4" aria-hidden="true" />
+                      Source
+                    </a>
+                  )}
+                </div>
+              </motion.article>
+            ))}
+          </div>
         </div>
       </div>
     </section>

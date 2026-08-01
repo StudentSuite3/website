@@ -86,6 +86,13 @@ html.dark {
 
   /* aceternity spotlight (sourced via the `components` skill) */
   --animate-spotlight: spotlight 2.4s ease-out 0.3s 1 forwards;
+
+  /* magic ui shimmer button (sourced via the `components` skill) */
+  --animate-shimmer-slide: shimmer-slide var(--speed) ease-in-out infinite alternate;
+  --animate-spin-around: spin-around calc(var(--speed) * 2) infinite linear;
+
+  /* hero ambient glow: slow CSS-only drift, replaces the old WebGL mesh gradient */
+  --animate-hero-glow: hero-glow-drift 14s ease-in-out infinite alternate;
 }
 
 @keyframes spotlight {
@@ -96,6 +103,38 @@ html.dark {
   100% {
     opacity: 1;
     transform: translate(-50%, -40%) scale(1);
+  }
+}
+
+@keyframes shimmer-slide {
+  to {
+    transform: translate(calc(100cqw - 100%), 0);
+  }
+}
+
+@keyframes hero-glow-drift {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(4%, -5%) scale(1.12);
+  }
+}
+
+@keyframes spin-around {
+  0% {
+    transform: translateZ(0) rotate(0);
+  }
+  15%,
+  35% {
+    transform: translateZ(0) rotate(90deg);
+  }
+  65%,
+  85% {
+    transform: translateZ(0) rotate(270deg);
+  }
+  100% {
+    transform: translateZ(0) rotate(360deg);
   }
 }
 
