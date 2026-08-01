@@ -48,7 +48,12 @@ https://realfavicongenerator.net (or via ImageMagick from the PNGs) and drop it 
 - `logo.svg`, `logo-lockup.svg`, `logo-lockup-dark.svg` are also copied into the org
   `.github` repo (`profile/`) so the org profile README renders.
 - `avatar-512.png` is uploaded in **Org Settings > Profile** (not referenced by code).
-- `og-image.png` is set as each repo's **Social Preview** (Settings > General).
+- `og-image.png` is set as each repo's **Social Preview** (Settings > General). The site's
+  own `<meta og:image>`/Twitter card no longer reads this file - `src/app/opengraph-image.tsx`
+  generates that one at build time so it can't drift from the current hero. `og-image.png`
+  here is still the GitHub Social Preview upload (that surface needs an actual file, not a
+  route), and it still shows the pre-2026-07 hero - due for a re-export from the design tool
+  next time brand assets get refreshed.
 
 ## Site `<head>` wiring (for the future Next.js build)
 

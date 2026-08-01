@@ -30,13 +30,11 @@ export const metadata: Metadata = {
     description,
     type: 'website',
     siteName: 'StudentSuite',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'StudentSuite' }],
   },
   twitter: {
     card: 'summary_large_image',
     title,
     description,
-    images: ['/og-image.png'],
   },
 };
 
