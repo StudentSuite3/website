@@ -24,6 +24,18 @@ export const products: Product[] = [
     cta: 'Open the map',
   },
   {
+    id: 'pepiros',
+    name: 'Pepiros',
+    emoji: '🔬',
+    status: 'Live',
+    pitch: 'Every claim in a paper, bound to the quote that actually supports it.',
+    description:
+      'Turn a research PDF into a knowledge graph where every generated claim stays bound to a located quote, not a vector-similarity guess, and hand that grounding to Claude as a callable MCP service.',
+    githubUrl: 'https://github.com/StudentSuite/pepiros',
+    liveUrl: 'https://pepiros.vercel.app',
+    cta: 'Explore Pepiros',
+  },
+  {
     id: 'skills-plugins',
     name: 'Skills & Plugins for Students',
     emoji: '🧩',
