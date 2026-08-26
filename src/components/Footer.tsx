@@ -65,6 +65,14 @@ export function Footer() {
                 </li>
                 <li>
                   <a
+                    href="/updates"
+                    className="text-sm text-[var(--body)] transition-colors hover:text-[var(--primary)]"
+                  >
+                    Updates
+                  </a>
+                </li>
+                <li>
+                  <a
                     href="/contribute"
                     className="text-sm text-[var(--body)] transition-colors hover:text-[var(--primary)]"
                   >

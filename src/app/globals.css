@@ -21,8 +21,12 @@
   --card-border: #e7e7ef;
   --card-hover-border: #c7c5f4;
   --card-hover-shadow: 0 12px 32px -12px rgba(79, 70, 229, 0.18);
-  --nav-bg: rgba(255, 255, 255, 0.88);
-  --mobile-bg: rgba(255, 255, 255, 0.97);
+  --nav-bg: var(--background);
+  --mobile-bg: var(--background);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 170ms;
+  --duration-med: 280ms;
+  --duration-slow: 450ms;
   --grid-line: rgba(79, 70, 229, 0.07);
   --grid-line-bold: rgba(79, 70, 229, 0.13);
   --spotlight-fill: #4f46e5;
@@ -58,8 +62,8 @@ html.dark {
   --card-border: #23233a;
   --card-hover-border: #45457a;
   --card-hover-shadow: 0 12px 32px -12px rgba(129, 140, 248, 0.16);
-  --nav-bg: rgba(14, 14, 26, 0.88);
-  --mobile-bg: rgba(14, 14, 26, 0.97);
+  --nav-bg: var(--background);
+  --mobile-bg: var(--background);
   --grid-line: rgba(129, 140, 248, 0.07);
   --grid-line-bold: rgba(129, 140, 248, 0.13);
   --spotlight-fill: #818cf8;
