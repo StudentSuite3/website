@@ -160,51 +160,48 @@ const studyTopics = [
 ];
 
 function StudyTopicList({ reduceMotion }: { reduceMotion: boolean }) {
-  const setRef = useRef<HTMLDivElement>(null);
+  const outerRef = useRef<HTMLDivElement>(null);
+  const innerRef = useRef<HTMLDivElement>(null);
   const y = useMotionValue(0);
-  const [setH, setSetH] = useState(0);
 
-  useEffect(() => {
-    if (setRef.current) setSetH(setRef.current.offsetHeight);
-  }, []);
-
-  useAnimationFrame((t) => {
-    if (reduceMotion || setH === 0) return;
-    const speed = 30;
-    const raw = (t / 1000) * speed;
-    y.set(-(raw % setH));
+  useAnimationFrame(() => {
+    if (reduceMotion || !innerRef.current || !outerRef.current) return;
+    const total = innerRef.current.scrollHeight;
+    const half = total / 2;
+    const current = y.get();
+    y.set(current <= -half ? current + half : current - 0.5);
   });
 
-  const row = studyTopics.map((topic, i) => (
-    <div
-      key={topic.label}
-      className="flex items-center gap-2 rounded-md border border-[var(--border)] bg-[var(--bg-elevated)] px-3 py-1.5"
-    >
-      <span
-        className="inline-block size-2 rounded-full"
-        style={{ backgroundColor: topic.color }}
-      />
-      <span className="font-mono text-[10px] font-medium text-[var(--text)]">
-        {topic.label}
-      </span>
-    </div>
-  ));
+  const items = (offset: number) =>
+    studyTopics.map((topic, i) => (
+      <div
+        key={`${offset}-${topic.label}`}
+        className="flex items-center gap-2 rounded-md border border-[var(--border)] bg-[var(--bg-elevated)] px-3 py-1.5"
+      >
+        <span
+          className="inline-block size-2 rounded-full"
+          style={{ backgroundColor: topic.color }}
+        />
+        <span className="font-mono text-[10px] font-medium text-[var(--text)]">
+          {topic.label}
+        </span>
+      </div>
+    ));
+
+  if (reduceMotion) {
+    return (
+      <div className="flex flex-col gap-2" aria-hidden="true">
+        {items(0)}
+      </div>
+    );
+  }
 
   return (
-    <div className="relative h-[130px] overflow-hidden" aria-hidden="true">
-      {/* invisible ref to measure one set's height */}
-      <div ref={setRef} className="absolute invisible h-auto">
-        {row}
-      </div>
-      {setH > 0 && (
-        <motion.div
-          className="absolute top-0 left-0 flex flex-col gap-2"
-          style={{ y }}
-        >
-          {row}
-          {row}
-        </motion.div>
-      )}
+    <div ref={outerRef} className="h-[130px] overflow-hidden" aria-hidden="true">
+      <motion.div ref={innerRef} className="flex flex-col gap-2" style={{ y }}>
+        {items(0)}
+        {items(1)}
+      </motion.div>
     </div>
   );
 }
