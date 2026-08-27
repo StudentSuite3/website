@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import type { MotionProps } from 'framer-motion';
-import { AnimatedList, AnimatedListItem } from '@/components/ui/animated-list';
 import { ArrowUpRight, Github, Code, Terminal, Puzzle, Brush, Zap, BookOpen, Map, FlaskConical, GraduationCap, Sparkles } from 'lucide-react';
 import { products } from '@/data/products';
 import { Dock, DockIcon } from '@/components/ui/Dock';
@@ -161,12 +160,37 @@ const studyTopics = [
 ];
 
 function StudyTopicList({ reduceMotion }: { reduceMotion: boolean }) {
-  if (reduceMotion) {
-    return (
-      <div className="flex flex-col gap-2" aria-hidden="true">
-        {studyTopics.map((topic) => (
+  const items = [...studyTopics, ...studyTopics];
+  const row = (
+    <div className="flex flex-col gap-2">
+      {studyTopics.map((topic) => (
+        <div
+          key={topic.label}
+          className="flex items-center gap-2 rounded-md border border-[var(--border)] bg-[var(--bg-elevated)] px-3 py-1.5"
+        >
+          <span
+            className="inline-block size-2 rounded-full"
+            style={{ backgroundColor: topic.color }}
+          />
+          <span className="font-mono text-[10px] font-medium text-[var(--text)]">
+            {topic.label}
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+
+  if (reduceMotion) return <div aria-hidden="true">{row}</div>;
+
+  return (
+    <div className="h-[130px] overflow-hidden" aria-hidden="true">
+      <div
+        className="flex flex-col gap-2"
+        style={{ animation: 'vertical-marquee-scroll 8s linear infinite' }}
+      >
+        {items.map((topic, i) => (
           <div
-            key={topic.label}
+            key={`${topic.label}-${i}`}
             className="flex items-center gap-2 rounded-md border border-[var(--border)] bg-[var(--bg-elevated)] px-3 py-1.5"
           >
             <span
@@ -179,26 +203,6 @@ function StudyTopicList({ reduceMotion }: { reduceMotion: boolean }) {
           </div>
         ))}
       </div>
-    );
-  }
-
-  return (
-    <div className="h-[130px] overflow-hidden" aria-hidden="true">
-      <AnimatedList delay={600}>
-        {studyTopics.map((topic) => (
-          <AnimatedListItem key={topic.label}>
-            <div className="flex items-center gap-2 rounded-md border border-[var(--border)] bg-[var(--bg-elevated)] px-3 py-1.5">
-              <span
-                className="inline-block size-2 rounded-full"
-                style={{ backgroundColor: topic.color }}
-              />
-              <span className="font-mono text-[10px] font-medium text-[var(--text)]">
-                {topic.label}
-              </span>
-            </div>
-          </AnimatedListItem>
-        ))}
-      </AnimatedList>
     </div>
   );
 }
