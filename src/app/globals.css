@@ -173,6 +173,11 @@ html.dark {
   100% { transform: translateX(-50%); }
 }
 
+@keyframes vertical-marquee-scroll {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
 @keyframes typing-cursor {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }

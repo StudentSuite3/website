@@ -1,9 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
+import { motion, useReducedMotion, useMotionValue, useAnimationFrame } from 'framer-motion';
 import type { MotionProps } from 'framer-motion';
-import { AnimatedList, AnimatedListItem } from '@/components/ui/animated-list';
 import { ArrowUpRight, Github, Code, Terminal, Puzzle, Brush, Zap, BookOpen, Map, FlaskConical, GraduationCap, Sparkles } from 'lucide-react';
 import { products } from '@/data/products';
 import { Dock, DockIcon } from '@/components/ui/Dock';
@@ -161,44 +160,48 @@ const studyTopics = [
 ];
 
 function StudyTopicList({ reduceMotion }: { reduceMotion: boolean }) {
+  const outerRef = useRef<HTMLDivElement>(null);
+  const innerRef = useRef<HTMLDivElement>(null);
+  const y = useMotionValue(0);
+
+  useAnimationFrame(() => {
+    if (reduceMotion || !innerRef.current || !outerRef.current) return;
+    const total = innerRef.current.scrollHeight;
+    const half = total / 2;
+    const current = y.get();
+    y.set(current <= -half ? current + half : current - 0.5);
+  });
+
+  const items = (offset: number) =>
+    studyTopics.map((topic, i) => (
+      <div
+        key={`${offset}-${topic.label}`}
+        className="flex items-center gap-2 rounded-md border border-[var(--border)] bg-[var(--bg-elevated)] px-3 py-1.5"
+      >
+        <span
+          className="inline-block size-2 rounded-full"
+          style={{ backgroundColor: topic.color }}
+        />
+        <span className="font-mono text-[10px] font-medium text-[var(--text)]">
+          {topic.label}
+        </span>
+      </div>
+    ));
+
   if (reduceMotion) {
     return (
       <div className="flex flex-col gap-2" aria-hidden="true">
-        {studyTopics.map((topic) => (
-          <div
-            key={topic.label}
-            className="flex items-center gap-2 rounded-md border border-[var(--border)] bg-[var(--bg-elevated)] px-3 py-1.5"
-          >
-            <span
-              className="inline-block size-2 rounded-full"
-              style={{ backgroundColor: topic.color }}
-            />
-            <span className="font-mono text-[10px] font-medium text-[var(--text)]">
-              {topic.label}
-            </span>
-          </div>
-        ))}
+        {items(0)}
       </div>
     );
   }
 
   return (
-    <div className="h-[130px] overflow-hidden" aria-hidden="true">
-      <AnimatedList delay={600}>
-        {studyTopics.map((topic) => (
-          <AnimatedListItem key={topic.label}>
-            <div className="flex items-center gap-2 rounded-md border border-[var(--border)] bg-[var(--bg-elevated)] px-3 py-1.5">
-              <span
-                className="inline-block size-2 rounded-full"
-                style={{ backgroundColor: topic.color }}
-              />
-              <span className="font-mono text-[10px] font-medium text-[var(--text)]">
-                {topic.label}
-              </span>
-            </div>
-          </AnimatedListItem>
-        ))}
-      </AnimatedList>
+    <div ref={outerRef} className="h-[130px] overflow-hidden" aria-hidden="true">
+      <motion.div ref={innerRef} className="flex flex-col gap-2" style={{ y }}>
+        {items(0)}
+        {items(1)}
+      </motion.div>
     </div>
   );
 }
