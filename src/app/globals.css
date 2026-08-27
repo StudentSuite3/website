@@ -97,6 +97,12 @@ html.dark {
 
   /* hero ambient glow: slow CSS-only drift, replaces the old WebGL mesh gradient */
   --animate-hero-glow: hero-glow-drift 14s ease-in-out infinite alternate;
+
+  /* per-project motif animations */
+  --animate-node-pulse: node-pulse 2.4s ease-in-out infinite;
+  --animate-plugin-scale: plugin-scale 0.5s var(--ease-out) forwards;
+  --animate-book-float: book-float 4s ease-in-out infinite alternate;
+  --animate-sparkle-twinkle: sparkle-twinkle 2s ease-in-out infinite;
 }
 
 @keyframes spotlight {
@@ -140,6 +146,41 @@ html.dark {
   100% {
     transform: translateZ(0) rotate(360deg);
   }
+}
+
+@keyframes node-pulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.35); }
+}
+
+@keyframes plugin-scale {
+  0% { opacity: 0; transform: scale(0.5); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes book-float {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-4px); }
+}
+
+@keyframes sparkle-twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(0.8) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.1) rotate(15deg); }
+}
+
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes typing-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes bento-pop {
+  0% { opacity: 0; transform: scale(0.5); }
+  100% { opacity: 1; transform: scale(1); }
 }
 
 /* graph-paper: the student notebook motif */
