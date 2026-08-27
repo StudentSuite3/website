@@ -191,14 +191,15 @@ function StudyTopicList({ reduceMotion }: { reduceMotion: boolean }) {
   ));
 
   return (
-    <div className="h-[130px] overflow-hidden" aria-hidden="true">
-      <div ref={setRef} className="flex flex-col gap-2">
+    <div className="relative h-[130px] overflow-hidden" aria-hidden="true">
+      {/* invisible ref to measure one set's height */}
+      <div ref={setRef} className="absolute invisible h-auto">
         {row}
       </div>
       {setH > 0 && (
         <motion.div
-          className="flex flex-col gap-2"
-          style={{ y, marginTop: -130 }}
+          className="absolute top-0 left-0 flex flex-col gap-2"
+          style={{ y }}
         >
           {row}
           {row}
