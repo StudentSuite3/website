@@ -132,15 +132,14 @@ function ResourceMarquee({ reduceMotion }: { reduceMotion: boolean }) {
     'Textbooks', 'Software', 'Channels', 'Free', 'Freemium',
     'Paid', 'Open Source', 'YouTube', 'Practice', 'Guides',
   ];
-  const doubled = [...tags, ...tags];
   return (
-    <div className="w-full overflow-hidden" aria-hidden="true">
+    <div className="w-full lg:overflow-hidden" aria-hidden="true">
       <div
-        className={`flex w-max gap-2 ${reduceMotion ? '' : 'animate-[marquee-scroll_25s_linear_infinite]'}`}
+        className={`flex flex-wrap items-center gap-2 lg:w-max lg:flex-nowrap ${reduceMotion ? '' : 'lg:animate-[marquee-scroll_25s_linear_infinite]'}`}
       >
-        {doubled.map((tag, i) => (
+        {tags.map((tag, i) => (
           <span
-            key={`${tag}-${i}`}
+            key={i}
             className="whitespace-nowrap rounded-full border border-[var(--border)] bg-[var(--primary-soft)] px-3 py-1 font-mono text-[10px] font-medium text-[var(--primary)]"
           >
             {tag}
