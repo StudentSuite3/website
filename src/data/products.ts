@@ -24,18 +24,6 @@ export const products: Product[] = [
     cta: 'Open the map',
   },
   {
-    id: 'pepiros',
-    name: 'Pepiros',
-    emoji: '🔬',
-    status: 'Live',
-    pitch: 'Every claim in a paper, bound to the quote that actually supports it.',
-    description:
-      'Turn a research PDF into a knowledge graph where every generated claim stays bound to a located quote, not a vector-similarity guess, and hand that grounding to Claude as a callable MCP service.',
-    githubUrl: 'https://github.com/StudentSuite/pepiros',
-    liveUrl: 'https://pepiros.vercel.app',
-    cta: 'Explore Pepiros',
-  },
-  {
     id: 'skills-plugins',
     name: 'Skills & Plugins for Students',
     emoji: '🧩',
@@ -70,17 +58,6 @@ export const products: Product[] = [
     githubUrl: 'https://github.com/StudentSuite/awesome-study-resources',
     liveUrl: 'https://studyymap.com/docs/awesome-study-resources',
     cta: 'Browse the list',
-  },
-  {
-    id: 'awesome-ai-prompts',
-    name: 'Awesome AI Prompts',
-    emoji: '✨',
-    status: 'Curated',
-    pitch: 'Copy-paste prompts that make coding agents verify, not guess.',
-    description:
-      'Disciplined, senior-engineer-style prompts for Claude, ChatGPT, Copilot, and Cursor: organised by workflow from code review to system design, each self-contained and tool-agnostic.',
-    githubUrl: 'https://github.com/StudentSuite/awesome-ai-prompts',
-    cta: 'Browse the prompts',
   },
 ];
 

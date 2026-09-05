@@ -16,23 +16,13 @@ export interface UpdateEntry {
  */
 export const updates: UpdateEntry[] = [
   {
-    id: 'pepiros-security-audit',
-    repo: 'Pepiros',
-    repoUrl: 'https://github.com/StudentSuite/pepiros',
-    date: '2026-08-24',
-    title: 'Multi-round MCP security and accessibility audit',
-    description:
-      'Closed 37 issues across the MCP layer and UI, including a chat-citation data-source bug and a workspace-pin bypass via an empty string.',
-    changelogUrl: 'https://github.com/StudentSuite/pepiros/blob/main/CHANGELOG.md',
-  },
-  {
     id: 'website-nav-and-updates',
     repo: 'Website',
     repoUrl: 'https://github.com/StudentSuite/Website',
     date: '2026-08-26',
-    title: 'Solid nav, Pepiros listed, this page shipped',
+    title: 'Solid nav and this page shipped',
     description:
-      'Fixed a low-contrast header on /mission, added Pepiros to the products list, and stood up this page to track activity across the org.',
+      'Fixed a low-contrast header on /mission and stood up this page to track activity across the org.',
     changelogUrl: 'https://github.com/StudentSuite/Website/blob/main/CHANGELOG.md',
   },
   {

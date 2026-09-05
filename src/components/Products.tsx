@@ -3,91 +3,37 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, useReducedMotion, useMotionValue, useAnimationFrame } from 'framer-motion';
 import type { MotionProps } from 'framer-motion';
-import { ArrowUpRight, Github, Code, Terminal, Puzzle, Brush, Zap, BookOpen, Map, FlaskConical, GraduationCap, Sparkles } from 'lucide-react';
-import { products } from '@/data/products';
+import { ArrowUpRight, Github, Code, Terminal, Puzzle, Brush, Zap, BookOpen, Map, GraduationCap } from 'lucide-react';
+import { products, type Product } from '@/data/products';
 import { Dock, DockIcon } from '@/components/ui/Dock';
 
-const [studyMap, pepiros, skillsPlugins, awesomeStudent, awesomeStudy, awesomePrompts] = products;
+/**
+ * Look products up by id, never by array position. The previous version
+ * destructured `products` positionally, so reordering or removing a single
+ * entry in the data file silently shifted every card onto the wrong product
+ * with no type error and no visible failure until someone read the page.
+ * An unknown id now throws instead.
+ */
+// Not `new Map()`: lucide-react's `Map` icon is imported above and shadows the
+// global, so the constructor here would resolve to a React component.
+const productsById: Record<string, Product> = Object.fromEntries(
+  products.map((p) => [p.id, p]),
+);
+
+function product(id: string): Product {
+  const found = productsById[id];
+  if (!found) throw new Error(`Products.tsx references an unknown product id: ${id}`);
+  return found;
+}
 
 const productIcons: Record<string, React.ComponentType<{ className?: string }>> = {
   studymap: Map,
-  pepiros: FlaskConical,
   'skills-plugins': Puzzle,
   'awesome-resources': BookOpen,
   'awesome-study-resources': GraduationCap,
-  'awesome-ai-prompts': Sparkles,
 };
 
 /* ── Per-project SVG motifs ──────────────────────────────────────────── */
-
-function GraphKnowledge({ reduceMotion }: { reduceMotion: boolean }) {
-  const nodes = [
-    { cx: 52, cy: 22, r: 7 },
-    { cx: 148, cy: 16, r: 5 },
-    { cx: 100, cy: 58, r: 9 },
-    { cx: 36, cy: 68, r: 5 },
-    { cx: 164, cy: 64, r: 6 },
-    { cx: 72, cy: 98, r: 4 },
-    { cx: 130, cy: 102, r: 5 },
-  ];
-  const edges = [
-    'M52 22 L100 58',
-    'M148 16 L100 58',
-    'M100 58 L36 68',
-    'M100 58 L164 64',
-    'M36 68 L72 98',
-    'M164 64 L130 102',
-    'M72 98 L130 102',
-  ];
-  return (
-    <svg viewBox="0 0 200 120" fill="none" className="h-auto w-full max-w-[200px]" aria-hidden="true">
-      {edges.map((d, i) => (
-        <motion.path
-          key={i}
-          d={d}
-          stroke="var(--primary)"
-          strokeWidth="1.5"
-          strokeDasharray="4 4"
-          strokeLinecap="round"
-          initial={reduceMotion ? { pathLength: 1, opacity: 0.45 } : { pathLength: 0, opacity: 0 }}
-          whileInView={{ pathLength: 1, opacity: 0.45 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.8, delay: 0.4 + i * 0.08, ease: 'easeOut' }}
-        />
-      ))}
-      {nodes.map((n, i) => (
-        <motion.circle
-          key={i}
-          cx={n.cx}
-          cy={n.cy}
-          r={n.r}
-          fill={i % 3 === 0 ? 'var(--accent)' : 'var(--primary)'}
-          initial={reduceMotion ? { opacity: 0.85 } : { opacity: 0, scale: 0 }}
-          whileInView={{ opacity: 0.85, scale: 1 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.4, delay: 0.15 + i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-        />
-      ))}
-      {nodes.filter((_, i) => i % 3 === 0).map((n, i) => (
-        <motion.circle
-          key={`ring-${i}`}
-          cx={n.cx}
-          cy={n.cy}
-          r={n.r + 5}
-          fill="none"
-          stroke={i === 0 ? 'var(--accent)' : 'var(--primary)'}
-          strokeWidth="1"
-          className="animate-node-pulse"
-          style={{ animationDelay: `${i * 0.8}s` }}
-          initial={reduceMotion ? { opacity: 0.3 } : { opacity: 0 }}
-          whileInView={{ opacity: 0.3 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.6 + i * 0.15 }}
-        />
-      ))}
-    </svg>
-  );
-}
 
 function MapMotif() {
   return (
@@ -205,42 +151,6 @@ function StudyTopicList({ reduceMotion }: { reduceMotion: boolean }) {
   );
 }
 
-const promptExamples = [
-  'feature-implementation',
-  'debugging-workflow',
-  'pr-review-checklist',
-  'system-design-spec',
-  'test-driven-dev',
-  'codebase-onboarding',
-];
-
-function PromptTerminal({ reduceMotion }: { reduceMotion: boolean }) {
-  const [idx, setIdx] = useState(0);
-
-  useEffect(() => {
-    if (reduceMotion) return;
-    const id = setInterval(() => setIdx((i) => (i + 1) % promptExamples.length), 2200);
-    return () => clearInterval(id);
-  }, [reduceMotion]);
-
-  return (
-    <div
-      className="w-full rounded-lg border border-[var(--border)] bg-[var(--background)] px-3 py-2 font-mono text-[11px] leading-relaxed text-[var(--body)]"
-      aria-hidden="true"
-    >
-      <span className="text-[var(--muted)]">$</span>{' '}
-      <span className="text-[var(--primary)]">cat</span>{' '}
-      <span>{promptExamples[idx]}-prompt.md</span>
-      {!reduceMotion && (
-        <span
-          className="ml-0.5 inline-block w-[2px] align-middle bg-[var(--primary)]"
-          style={{ height: '1em', animation: 'typing-cursor 1s step-end infinite' }}
-        />
-      )}
-    </div>
-  );
-}
-
 /* ── Card wrapper ────────────────────────────────────────────────────── */
 
 function ProductCard({
@@ -249,7 +159,7 @@ function ProductCard({
   className = '',
   reveal,
 }: {
-  product: (typeof products)[number];
+  product: Product;
   children: React.ReactNode;
   className?: string;
   reveal: Pick<MotionProps, 'initial' | 'whileInView' | 'viewport' | 'transition'>;
@@ -338,47 +248,33 @@ export function Products() {
           </p>
         </motion.div>
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {/* Row 1: Pepiros (wide) + StudyMap */}
-          <ProductCard
-            product={pepiros}
-            reveal={reveal(0.1)}
-            className="lg:col-span-2"
-          >
-            <div className="mt-4 flex justify-center">
-              <GraphKnowledge reduceMotion={reduceMotion} />
-            </div>
-          </ProductCard>
-          <ProductCard product={studyMap} reveal={reveal(0.15)} className="lg:col-span-2">
+        {/*
+          Four products, so a plain 2-up grid rather than the old four-column
+          bento with hand-placed spans. That layout was sized for six cards and
+          left a hole at this count; two even rows read as deliberate instead.
+        */}
+        <div className="mt-12 grid gap-6 sm:grid-cols-2">
+          {/* Row 1: the two live tools */}
+          <ProductCard product={product('studymap')} reveal={reveal(0.1)}>
             <div className="mt-4">
               <MapMotif />
             </div>
           </ProductCard>
+          <ProductCard product={product('skills-plugins')} reveal={reveal(0.15)}>
+            <div className="mt-4 flex justify-center">
+              <PluginDock reduceMotion={reduceMotion} />
+            </div>
+          </ProductCard>
 
-          {/* Row 2: 3 equal cards */}
-          <ProductCard product={awesomeStudent} reveal={reveal(0.2)}>
+          {/* Row 2: the two curated lists */}
+          <ProductCard product={product('awesome-resources')} reveal={reveal(0.2)}>
             <div className="mt-4">
               <ResourceMarquee reduceMotion={reduceMotion} />
             </div>
           </ProductCard>
-          <ProductCard product={awesomeStudy} reveal={reveal(0.25)}>
+          <ProductCard product={product('awesome-study-resources')} reveal={reveal(0.25)}>
             <div className="mt-4 flex justify-center">
               <StudyTopicList reduceMotion={reduceMotion} />
-            </div>
-          </ProductCard>
-          <ProductCard product={awesomePrompts} reveal={reveal(0.3)}>
-            <div className="mt-4">
-              <PromptTerminal reduceMotion={reduceMotion} />
-            </div>
-          </ProductCard>
-
-          {/* Row 3: Skills & Plugins */}
-          <ProductCard
-            product={skillsPlugins}
-            reveal={reveal(0.35)}
-          >
-            <div className="mt-4 flex justify-center">
-              <PluginDock reduceMotion={reduceMotion} />
             </div>
           </ProductCard>
         </div>
