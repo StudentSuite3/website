@@ -1,7 +1,5 @@
 import { products, orgUrl } from '@/data/products';
 
-const contactEmail = 'studentsuite3@gmail.com';
-
 export function Footer() {
   return (
     <footer className="border-t border-[var(--border)] bg-[var(--card-bg)]">
@@ -102,7 +100,7 @@ export function Footer() {
                     rel="noopener noreferrer"
                     className="text-sm text-[var(--body)] transition-colors hover:text-[var(--primary)]"
                   >
-                    {contactEmail}
+                    Email
                   </a>
                 </li>
                 <li>
