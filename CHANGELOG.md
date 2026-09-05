@@ -11,7 +11,7 @@ This project hasn't tagged a release yet; everything so far lives under Unreleas
 
 - `sitemap.xml` and a generated Open Graph image.
 - A dedicated `/updates` page aggregating recent activity across the
-  StudentSuite org, and a Pepiros entry on the products list.
+  StudentSuite org.
 - A full-screen mobile nav (portalled, focus-trapped, closes on Escape),
   replacing the inline dropdown menu.
 
@@ -28,9 +28,20 @@ This project hasn't tagged a release yet; everything so far lives under Unreleas
 - Contact link switched from a plain `mailto:` to a Gmail compose URL, and
   the contact email updated to `studentsuite3@gmail.com`.
 - Canonical domain pointed at `thestudentsuite.com`.
-- Installed, then reverted, Vercel Web Analytics — analytics stays off.
+- Vercel Web Analytics is installed and active. A previous entry here said it
+  had been reverted and analytics stayed off, which was never true:
+  `<Analytics />` has been mounted in the root layout the whole time.
+- Retired Pepiros and Awesome AI Prompts from the tools grid and the updates
+  feed. The products grid is now four cards in two even rows rather than a
+  six-card bento with hand-placed spans.
+- `Products.tsx` looks products up by id instead of destructuring the data
+  array by position, so removing or reordering an entry can no longer shift
+  every card onto the wrong product.
 
 ### Fixed
 
+- `/updates` was missing from the sitemap.
+- Added the ESLint flat config the repo had been missing since ESLint 9, so
+  `npm run lint` runs instead of erroring out.
 - Regenerated Open Graph images from the new hero and bumped Next.js for
   CVEs.
