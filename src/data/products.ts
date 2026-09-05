@@ -71,6 +71,17 @@ export const products: Product[] = [
     liveUrl: 'https://studyymap.com/docs/awesome-study-resources',
     cta: 'Browse the list',
   },
+  {
+    id: 'awesome-ai-prompts',
+    name: 'Awesome AI Prompts',
+    emoji: '✨',
+    status: 'Curated',
+    pitch: 'Copy-paste prompts that make coding agents verify, not guess.',
+    description:
+      'Disciplined, senior-engineer-style prompts for Claude, ChatGPT, Copilot, and Cursor: organised by workflow from code review to system design, each self-contained and tool-agnostic.',
+    githubUrl: 'https://github.com/StudentSuite/awesome-ai-prompts',
+    cta: 'Browse the prompts',
+  },
 ];
 
 export const orgUrl = 'https://github.com/StudentSuite';
