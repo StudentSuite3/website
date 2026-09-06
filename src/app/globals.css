@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -42,6 +43,18 @@
   --scrollbar-track: #f4f4f8;
   --scrollbar-thumb: #d6d6e2;
   --scrollbar-thumb-hover: #b9b9cc;
+  /* shadcn compat layer: used by copied UI components, not by website originals */
+  --card: rgba(255, 255, 255, 0.8);
+  --card-foreground: #3f3f52;
+  --popover: #ffffff;
+  --popover-foreground: #3f3f52;
+  --primary-foreground: #ffffff;
+  --muted-surface: #f4f4f8;
+  --muted-foreground: #6b6b80;
+  --secondary-surface: #f0f0f8;
+  --secondary-foreground: #1a1a2e;
+  --input: #e7e7ef;
+  --ring: #4f46e5;
 }
 
 html.dark {
@@ -79,11 +92,36 @@ html.dark {
   --scrollbar-track: #14142a;
   --scrollbar-thumb: #31314e;
   --scrollbar-thumb-hover: #45457a;
+  /* shadcn compat layer: dark mode overrides */
+  --card: rgba(24, 24, 42, 0.6);
+  --card-foreground: #c4c4d6;
+  --popover: #0e0e1a;
+  --popover-foreground: #c4c4d6;
+  --primary-foreground: #ffffff;
+  --muted-surface: #1e1e30;
+  --muted-foreground: #8f8fa8;
+  --secondary-surface: #1a1a2e;
+  --secondary-foreground: #f4f4fa;
+  --input: #23233a;
+  --ring: #818cf8;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-muted: var(--muted-surface);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-secondary: var(--secondary-surface);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
   --font-sans: var(--font-inter);
   --font-heading: var(--font-space-grotesk);
   --font-mono: var(--font-jetbrains-mono);
@@ -169,6 +207,16 @@ html.dark {
 @keyframes bento-pop {
   0% { opacity: 0; transform: scale(0.5); }
   100% { opacity: 1; transform: scale(1); }
+}
+
+/* kicker: overline/eyebrow label used in docs and section headers */
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primary);
 }
 
 /* graph-paper: the student notebook motif */
