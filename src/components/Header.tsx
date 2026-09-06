@@ -11,6 +11,7 @@ const navLinks = [
   { href: '/#mission', label: 'Mission' },
   { href: '/#contribute', label: 'Contribute' },
   { href: '/updates', label: 'Updates' },
+  { href: '/docs', label: 'Docs' },
 ];
 
 export function Header() {

@@ -85,6 +85,14 @@ export function Footer() {
                     Mission
                   </a>
                 </li>
+                <li>
+                  <a
+                    href="/docs"
+                    className="text-sm text-[var(--body)] transition-colors hover:text-[var(--primary)]"
+                  >
+                    Docs
+                  </a>
+                </li>
               </ul>
             </nav>
 
