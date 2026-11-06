@@ -1,0 +1,30 @@
+name: Daily rebuild
+
+# The awesome-list docs pages are fetched from each list's README at build
+# time and the site is a static export, so nothing refreshes them between
+# deploys (#10). This triggers a production rebuild once a day.
+#
+# Maintainer setup: create a Deploy Hook for the production branch in the
+# Vercel project (Settings > Git > Deploy Hooks) and store its URL in this
+# repository's Actions secrets as VERCEL_DEPLOY_HOOK_URL.
+on:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger a production deploy
+        env:
+          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
+        run: |
+          if [ -z "$HOOK" ]; then
+            echo "::error::VERCEL_DEPLOY_HOOK_URL is not set; see the setup note at the top of this workflow."
+            exit 1
+          fi
+          curl -fsS -X POST "$HOOK" > /dev/null
+          echo "Deploy hook triggered."

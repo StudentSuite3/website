@@ -35,7 +35,11 @@ export function AwesomeListBrowser({ sections, repoName, repoUrl }: AwesomeListB
     return rows.filter((row) => {
       if (activeSection && row.section !== activeSection) return false;
       if (!q) return true;
-      return row.name.toLowerCase().includes(q) || row.description.toLowerCase().includes(q);
+      return (
+        row.name.toLowerCase().includes(q) ||
+        row.description.toLowerCase().includes(q) ||
+        (row.subsection?.toLowerCase().includes(q) ?? false)
+      );
     });
   }, [rows, query, activeSection]);
 
@@ -122,7 +126,7 @@ export function AwesomeListBrowser({ sections, repoName, repoUrl }: AwesomeListB
                 <td className="break-words px-4 py-3 text-foreground/80">{row.description}</td>
                 <td className="hidden px-4 py-3 sm:table-cell">
                   <Badge variant="outline" className="h-auto whitespace-normal text-left">
-                    {row.section}
+                    {row.subsection ? `${row.section} / ${row.subsection}` : row.section}
                   </Badge>
                 </td>
               </tr>
