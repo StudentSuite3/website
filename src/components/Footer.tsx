@@ -93,6 +93,14 @@ export function Footer() {
                     Docs
                   </a>
                 </li>
+                <li>
+                  <a
+                    href="/privacy"
+                    className="text-sm text-[var(--body)] transition-colors hover:text-[var(--primary)]"
+                  >
+                    Privacy
+                  </a>
+                </li>
               </ul>
             </nav>
 

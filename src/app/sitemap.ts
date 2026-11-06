@@ -7,7 +7,7 @@ import { site } from '@/lib/site';
 export const dynamic = 'force-static';
 
 const BASE_URL = site.url;
-const ROUTES = ['/', '/tools', '/updates', '/mission', '/contribute', '/docs'];
+const ROUTES = ['/', '/tools', '/updates', '/mission', '/contribute', '/docs', '/privacy'];
 
 // Static routes carry no lastModified: stamping the build time on every
 // deploy tells crawlers every page changed, which teaches them to ignore the
