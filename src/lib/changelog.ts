@@ -8,16 +8,19 @@ export interface ChangelogSection {
 
 export interface ChangelogRelease {
   version: string;
-  date: string;
+  /** null for a heading with no date, i.e. `## [Unreleased]`. */
+  date: string | null;
   sections: ChangelogSection[];
 }
 
-const VERSION_PATTERN = /^## \[(.+?)\] - (.+)$/;
+// The date is optional so `## [Unreleased]` parses too (#6).
+const VERSION_PATTERN = /^## \[(.+?)\](?: - (.+))?$/;
 const SECTION_PATTERN = /^### (.+)$/;
 const ITEM_PATTERN = /^- (.+)$/;
 
 /**
- * Parses CHANGELOG.md's Keep-a-Changelog-formatted body (`## [x.y.z] - date`,
+ * Parses CHANGELOG.md's Keep-a-Changelog-formatted body (`## [x.y.z] - date`
+ * or a dateless `## [Unreleased]`,
  * `### Category`, `- item`) into structured releases. Content past the intro
  * paragraph and before the first `## [` heading is ignored.
  */
@@ -29,7 +32,7 @@ export function parseChangelog(markdown: string): ChangelogRelease[] {
   for (const line of markdown.split("\n")) {
     const versionMatch = VERSION_PATTERN.exec(line);
     if (versionMatch) {
-      currentRelease = { version: versionMatch[1], date: versionMatch[2], sections: [] };
+      currentRelease = { version: versionMatch[1], date: versionMatch[2]?.trim() || null, sections: [] };
       releases.push(currentRelease);
       currentSection = null;
       continue;

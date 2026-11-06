@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
-import { site } from "@/lib/site";
 import { getChangelog } from "@/lib/changelog";
 import {
   Card,
@@ -14,7 +13,7 @@ import { Badge } from "@/components/ui/badge";
 
 export const metadata: Metadata = {
   title: "Changelog",
-  description: "Every notable change to StudyMap, release by release.",
+  description: "Every notable change to the StudentSuite website, release by release.",
 };
 
 /** Renders a changelog bullet's inline `` `code` `` spans as <code> elements. */
@@ -37,15 +36,8 @@ export default function ChangelogPage() {
   return (
     <>
       <p className="mb-6 text-foreground/80">
-        Generated from{" "}
-        <a
-          href={`${site.repo}/blob/main/CHANGELOG.md`}
-          target="_blank"
-          rel="noreferrer"
-          className="font-medium text-primary hover:underline"
-        >
-          CHANGELOG.md
-        </a>{" "}
+        Generated from the website&apos;s{" "}
+        <code className="rounded bg-muted px-1 py-0.5 text-xs">CHANGELOG.md</code> at build time,
         so this page never drifts from the real history.
       </p>
       <div className="space-y-4">
@@ -53,10 +45,12 @@ export default function ChangelogPage() {
             <Card key={release.version}>
               <CardHeader>
                 <div className="flex flex-wrap items-center gap-2">
-                  <CardTitle>v{release.version}</CardTitle>
-                  <Badge variant="outline" className="text-xs text-muted-foreground">
-                    {release.date}
-                  </Badge>
+                  <CardTitle>{release.date ? `v${release.version}` : release.version}</CardTitle>
+                  {release.date && (
+                    <Badge variant="outline" className="text-xs text-muted-foreground">
+                      {release.date}
+                    </Badge>
+                  )}
                 </div>
                 <CardDescription className="sr-only">
                   Changes in version {release.version}

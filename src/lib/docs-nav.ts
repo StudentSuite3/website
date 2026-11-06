@@ -215,7 +215,7 @@ export const docsNav: DocsNavEntry[] = [
   {
     href: "/docs/changelog",
     title: "Changelog",
-    description: "Every notable change to StudyMap, release by release.",
+    description: "Every notable change to the StudentSuite website, release by release.",
     icon: History,
     iconClassName: "text-primary",
     group: "Developers",
