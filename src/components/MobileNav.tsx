@@ -8,6 +8,7 @@ import { Github, Menu, X } from 'lucide-react';
 import { orgUrl } from '@/data/products';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { cn } from '@/lib/utils';
+import { isCurrent } from '@/lib/nav';
 
 interface NavLink {
   href: string;
@@ -144,7 +145,7 @@ export function MobileNav({ links }: { links: NavLink[] }) {
 
             <nav className="flex flex-1 flex-col justify-center gap-2 px-6" aria-label="Mobile">
               {links.map((link, i) => {
-                const active = pathname === link.href;
+                const active = isCurrent(pathname, link.href);
                 return (
                   <a
                     key={link.href}

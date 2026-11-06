@@ -12,7 +12,7 @@ export default function MissionPage() {
   return (
     <>
       <Header />
-      <main>
+      <main id="main-content" className="scroll-mt-20">
         <Mission />
       </main>
       <Footer />

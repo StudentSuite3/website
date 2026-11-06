@@ -7,7 +7,7 @@ export default function DocsLayout({ children }: { children: ReactNode }) {
   return (
     <>
       <Header />
-      <main className="pt-16">{children}</main>
+      <main id="main-content" className="scroll-mt-20 pt-16">{children}</main>
       <Footer />
     </>
   );

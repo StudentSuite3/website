@@ -12,7 +12,7 @@ export default function UpdatesPage() {
   return (
     <>
       <Header />
-      <main>
+      <main id="main-content" className="scroll-mt-20">
         <Updates />
       </main>
       <Footer />

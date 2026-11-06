@@ -13,7 +13,7 @@ export default function ToolsPage() {
   return (
     <>
       <Header />
-      <main>
+      <main id="main-content" className="scroll-mt-20">
         <Products />
       </main>
       <Footer />

@@ -6,6 +6,7 @@ import { Github, Moon, Sun } from 'lucide-react';
 import { orgUrl } from '@/data/products';
 import { MobileNav } from '@/components/MobileNav';
 import { toggleTheme, useIsDark } from '@/hooks/useTheme';
+import { isCurrent } from '@/lib/nav';
 
 const navLinks = [
   { href: '/#tools', label: 'Tools' },
@@ -34,7 +35,7 @@ export function Header() {
             <a
               key={link.href}
               href={link.href}
-              aria-current={pathname === link.href ? 'page' : undefined}
+              aria-current={isCurrent(pathname, link.href) ? 'page' : undefined}
               className="rounded-md px-3 py-2 text-sm text-[var(--secondary)] transition-colors hover:text-[var(--heading)] aria-[current=page]:text-[var(--primary)] focus-visible:outline-2 focus-visible:outline-[var(--primary)]"
             >
               {link.label}

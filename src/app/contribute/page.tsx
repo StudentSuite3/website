@@ -13,7 +13,7 @@ export default function ContributePage() {
   return (
     <>
       <Header />
-      <main>
+      <main id="main-content" className="scroll-mt-20">
         <Contribute />
       </main>
       <Footer />
