@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-# Sitemap: https://studentsuite.dev/sitemap.xml  # uncomment + set domain when site is live

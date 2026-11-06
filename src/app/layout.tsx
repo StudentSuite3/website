@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Inter, Space_Grotesk, JetBrains_Mono } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
+import { site } from '@/lib/site';
 
 const inter = Inter({ variable: '--font-inter', subsets: ['latin'] });
 const spaceGrotesk = Space_Grotesk({ variable: '--font-space-grotesk', subsets: ['latin'] });
@@ -12,7 +13,7 @@ const description =
   'Free, open tools built around one idea: students deserve better software. Shaped by rigorous programs like IGCSE and IB, but open to any student, anywhere.';
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://thestudentsuite.com'),
+  metadataBase: new URL(site.url),
   title,
   description,
   keywords: ['students', 'open source', 'study tools', 'IB', 'IGCSE', 'StudyMap', 'StudentSuite'],
