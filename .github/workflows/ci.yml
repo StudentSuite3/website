@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          # prebuild (scripts/build-docs-meta.mjs) reads each doc's last
+          # commit date from git log, which a shallow clone does not have.
+          fetch-depth: 0
+      - uses: actions/setup-node@v7
+        with:
+          # Node 24 runs the TypeScript tests in src/lib without a build step.
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build
