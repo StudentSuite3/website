@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
+import Link from 'next/link';
 import { createPortal } from 'react-dom';
 import { usePathname } from 'next/navigation';
 import { Github, Menu, X } from 'lucide-react';
@@ -22,20 +23,27 @@ interface NavLink {
  * Theme toggle stays in the always-visible collapsed bar, not duplicated here.
  */
 export function MobileNav({ links }: { links: NavLink[] }) {
-  const [open, setOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
+  // The menu is open for the path it was opened on, so navigating closes it
+  // without an effect that sets state after every route change.
   const pathname = usePathname();
+  const [openOn, setOpenOn] = useState<string | null>(null);
+  const open = openOn === pathname;
+  const setOpen = (next: boolean | ((v: boolean) => boolean)) =>
+    setOpenOn((current) => {
+      const value = typeof next === 'function' ? next(current === pathname) : next;
+      return value ? pathname : null;
+    });
+  // The portal target only exists in the browser.
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
   const reduced = usePrefersReducedMotion();
-
-  useEffect(() => setMounted(true), []);
 
   const triggerRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const firstLinkRef = useRef<HTMLAnchorElement>(null);
-
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
 
   useEffect(() => {
     if (!open) return;
@@ -113,7 +121,7 @@ export function MobileNav({ links }: { links: NavLink[] }) {
             )}
           >
             <div className="flex h-16 items-center justify-between px-4">
-              <a
+              <Link
                 href="/"
                 onClick={close}
                 aria-label="StudentSuite home"
@@ -123,7 +131,7 @@ export function MobileNav({ links }: { links: NavLink[] }) {
                 <span className="font-[family-name:var(--font-space-grotesk)] text-xl font-semibold tracking-tight text-[var(--heading)]">
                   Student<span className="text-[var(--primary)]">Suite</span>
                 </span>
-              </a>
+              </Link>
               <button
                 type="button"
                 onClick={close}

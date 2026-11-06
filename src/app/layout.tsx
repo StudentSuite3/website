@@ -52,7 +52,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){var d=document.documentElement;d.classList.add('no-transition');var s=localStorage.getItem('theme');if(s==='dark'){d.classList.add('dark')}else if(!s&&window.matchMedia('(prefers-color-scheme: dark)').matches){d.classList.add('dark')}requestAnimationFrame(function(){requestAnimationFrame(function(){d.classList.remove('no-transition')})})})()`,
+            __html: `(function(){var d=document.documentElement;d.classList.add('no-transition');var s=null;try{s=localStorage.getItem('theme')}catch(e){}if(s==='dark'){d.classList.add('dark')}else if(!s&&window.matchMedia('(prefers-color-scheme: dark)').matches){d.classList.add('dark')}requestAnimationFrame(function(){requestAnimationFrame(function(){d.classList.remove('no-transition')})})})()`,
           }}
         />
       </head>

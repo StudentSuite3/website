@@ -22,6 +22,14 @@ interface DotPatternProps extends React.SVGProps<SVGSVGElement> {
  * Pure SVG, no canvas/WebGL. Color inherits from `currentColor`, so set it via a
  * `text-[var(--grid-line)]`-style className. Glow honors prefers-reduced-motion.
  */
+// Deterministic stand-in for Math.random(), keyed by cell index, so the server
+// render and the client render give every dot the same delay and duration
+// (no hydration mismatch) and render stays pure.
+function seeded(n: number) {
+  const x = Math.sin(n * 12.9898 + 78.233) * 43758.5453;
+  return x - Math.floor(x);
+}
+
 export function DotPattern({
   width = 20,
   height = 20,
@@ -62,8 +70,8 @@ export function DotPattern({
       return {
         x: col * width + cx + x,
         y: row * height + cy + y,
-        delay: Math.random() * 5,
-        duration: Math.random() * 3 + 2,
+        delay: seeded(i) * 5,
+        duration: seeded(i + 0.5) * 3 + 2,
       };
     },
   );

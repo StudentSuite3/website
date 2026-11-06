@@ -95,7 +95,10 @@ function DockIcon({
     <motion.div
       ref={ref}
       style={{ width: scaleSize, height: scaleSize, padding }}
-      className="flex aspect-square cursor-pointer items-center justify-center rounded-full text-[var(--primary)] transition-colors hover:bg-[var(--primary-soft)]"
+      className={cn(
+        'flex aspect-square cursor-pointer items-center justify-center rounded-full text-[var(--primary)] transition-colors hover:bg-[var(--primary-soft)]',
+        className,
+      )}
     >
       {children}
     </motion.div>

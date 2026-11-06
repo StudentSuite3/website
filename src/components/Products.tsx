@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { motion, useReducedMotion, useMotionValue, useAnimationFrame } from 'framer-motion';
 import type { MotionProps } from 'framer-motion';
 import { ArrowUpRight, Github, Code, Terminal, Puzzle, Brush, Zap, BookOpen, Map, GraduationCap } from 'lucide-react';
@@ -118,7 +118,7 @@ function StudyTopicList({ reduceMotion }: { reduceMotion: boolean }) {
   });
 
   const items = (offset: number) =>
-    studyTopics.map((topic, i) => (
+    studyTopics.map((topic) => (
       <div
         key={`${offset}-${topic.label}`}
         className="flex items-center gap-2 rounded-md border border-[var(--border)] bg-[var(--bg-elevated)] px-3 py-1.5"

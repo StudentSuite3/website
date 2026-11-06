@@ -1,10 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Github, Moon, Sun } from 'lucide-react';
 import { orgUrl } from '@/data/products';
 import { MobileNav } from '@/components/MobileNav';
+import { toggleTheme, useIsDark } from '@/hooks/useTheme';
 
 const navLinks = [
   { href: '/#tools', label: 'Tools' },
@@ -15,29 +16,18 @@ const navLinks = [
 ];
 
 export function Header() {
-  const [isDark, setIsDark] = useState(false);
+  const isDark = useIsDark();
   const pathname = usePathname();
-
-  useEffect(() => {
-    setIsDark(document.documentElement.classList.contains('dark'));
-  }, []);
-
-  const toggleTheme = () => {
-    const next = !document.documentElement.classList.contains('dark');
-    document.documentElement.classList.toggle('dark', next);
-    localStorage.setItem('theme', next ? 'dark' : 'light');
-    setIsDark(next);
-  };
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-[var(--border)] bg-[var(--nav-bg)]">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <a href="/" aria-label="StudentSuite home" className="flex items-center gap-3">
+        <Link href="/" aria-label="StudentSuite home" className="flex items-center gap-3">
           <img src="/logo.svg" alt="" aria-hidden="true" className="h-10 w-10 sm:h-12 sm:w-12" />
           <span className="font-[family-name:var(--font-space-grotesk)] text-2xl sm:text-3xl font-semibold tracking-tight text-[var(--heading)]">
             Student<span className="text-[var(--primary)]">Suite</span>
           </span>
-        </a>
+        </Link>
 
         <nav className="hidden items-center gap-1 md:flex" aria-label="Primary">
           {navLinks.map((link) => (

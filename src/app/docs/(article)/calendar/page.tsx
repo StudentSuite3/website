@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
 import { StepCard } from "@/components/docs/step-card";
 import { CalloutCard } from "@/components/docs/callout-card";
