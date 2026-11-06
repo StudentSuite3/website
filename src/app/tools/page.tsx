@@ -4,7 +4,7 @@ import { Products } from '@/components/Products';
 import { Footer } from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'Tools · StudentSuite',
+  title: 'Tools',
   description:
     'The suite so far: every free, open-source tool StudentSuite ships for students.',
 };

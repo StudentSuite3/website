@@ -14,7 +14,12 @@ const description =
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title,
+  // Child pages set a bare title ("FAQ") and get " · StudentSuite" appended;
+  // the home page keeps its full title.
+  title: { default: title, template: '%s · StudentSuite' },
+  // Resolved per route against metadataBase, so each page names its www URL
+  // as canonical whichever host served it.
+  alternates: { canonical: './' },
   description,
   keywords: ['students', 'open source', 'study tools', 'IB', 'IGCSE', 'StudyMap', 'StudentSuite'],
   icons: {

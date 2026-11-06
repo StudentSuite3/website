@@ -4,7 +4,7 @@ import { Contribute } from '@/components/Contribute';
 import { Footer } from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'Contribute · StudentSuite',
+  title: 'Contribute',
   description:
     'The suite gets better when students build it together. How to star, add, and open issues on StudentSuite repos.',
 };

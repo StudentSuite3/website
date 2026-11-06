@@ -4,7 +4,7 @@ import { Updates } from '@/components/Updates';
 import { Footer } from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'Updates · StudentSuite',
+  title: 'Updates',
   description: 'Recent activity across every StudentSuite repo.',
 };
 

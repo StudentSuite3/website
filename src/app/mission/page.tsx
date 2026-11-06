@@ -4,7 +4,7 @@ import { Mission } from '@/components/Mission';
 import { Footer } from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'Mission · StudentSuite',
+  title: 'Mission',
   description: 'Students deserve better software. Why StudentSuite exists and who it is for.',
 };
 
