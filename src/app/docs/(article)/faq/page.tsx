@@ -32,7 +32,7 @@ export default function FaqPage() {
             <p>
               Open an issue at{" "}
               <a
-                href={`${site.repo}/issues`}
+                href={`${site.studymapRepo}/issues`}
                 target="_blank"
                 rel="noreferrer"
                 className="font-medium text-primary hover:underline"

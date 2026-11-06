@@ -67,7 +67,7 @@ export default function TroubleshootingPage() {
                 <code className="rounded bg-muted px-1.5 py-0.5 font-mono">supabase/migrations/</code>, in
                 filename order. See{" "}
                 <a
-                  href={`${site.repo}/blob/main/SELF-HOSTING.md`}
+                  href={`${site.studymapRepo}/blob/main/SELF-HOSTING.md`}
                   target="_blank"
                   rel="noreferrer"
                   className="font-medium text-primary hover:underline"
@@ -132,7 +132,7 @@ export default function TroubleshootingPage() {
           <p>
             Open an issue at{" "}
             <a
-              href={`${site.repo}/issues`}
+              href={`${site.studymapRepo}/issues`}
               target="_blank"
               rel="noreferrer"
               className="font-medium text-primary hover:underline"

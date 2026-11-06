@@ -126,7 +126,7 @@ export default function DataSourcesPage() {
                 <code className="rounded bg-muted px-1.5 py-0.5 font-mono">data/</code>, is
                 MIT licensed. See{" "}
                 <a
-                  href={`${site.repo}/blob/main/LICENSE`}
+                  href={`${site.studymapRepo}/blob/main/LICENSE`}
                   target="_blank"
                   rel="noreferrer"
                   className="font-medium text-primary hover:underline"
@@ -147,7 +147,7 @@ export default function DataSourcesPage() {
           <p>
             Open an issue at{" "}
             <a
-              href={`${site.repo}/issues`}
+              href={`${site.studymapRepo}/issues`}
               target="_blank"
               rel="noreferrer"
               className="font-medium text-primary hover:underline"
