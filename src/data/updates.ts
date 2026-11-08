@@ -1,11 +1,12 @@
 export interface UpdateEntry {
   id: string;
   repo: string;
-  repoUrl: string;
+  /** Left out for a private repo, whose links would 404 for visitors. */
+  repoUrl?: string;
   date: string;
   title: string;
   description: string;
-  changelogUrl: string;
+  changelogUrl?: string;
 }
 
 /**
@@ -18,12 +19,10 @@ export const updates: UpdateEntry[] = [
   {
     id: 'website-nav-and-updates',
     repo: 'Website',
-    repoUrl: 'https://github.com/StudentSuite/Website',
     date: '2026-08-26',
     title: 'Solid nav and this page shipped',
     description:
       'Fixed a low-contrast header on /mission and stood up this page to track activity across the org.',
-    changelogUrl: 'https://github.com/StudentSuite/Website/blob/main/CHANGELOG.md',
   },
   {
     id: 'studymap-docs-overhaul',

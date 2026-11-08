@@ -35,28 +35,34 @@ export function Updates() {
             <p className="mt-2 max-w-2xl leading-relaxed text-[var(--body)]">
               {entry.description}
             </p>
-            <div className="mt-4 flex flex-wrap gap-4">
-              <a
-                href={entry.repoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group/link inline-flex items-center gap-1.5 text-sm font-medium text-[var(--primary)] transition-colors hover:text-[var(--primary-strong)]"
-              >
-                View repo
-                <ArrowUpRight
-                  className="h-4 w-4 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
-                  aria-hidden="true"
-                />
-              </a>
-              <a
-                href={entry.changelogUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--secondary)] transition-colors hover:text-[var(--heading)]"
-              >
-                Changelog
-              </a>
-            </div>
+            {(entry.repoUrl || entry.changelogUrl) && (
+              <div className="mt-4 flex flex-wrap gap-4">
+                {entry.repoUrl && (
+                  <a
+                    href={entry.repoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group/link inline-flex items-center gap-1.5 text-sm font-medium text-[var(--primary)] transition-colors hover:text-[var(--primary-strong)]"
+                  >
+                    View repo
+                    <ArrowUpRight
+                      className="h-4 w-4 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
+                      aria-hidden="true"
+                    />
+                  </a>
+                )}
+                {entry.changelogUrl && (
+                  <a
+                    href={entry.changelogUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--secondary)] transition-colors hover:text-[var(--heading)]"
+                  >
+                    Changelog
+                  </a>
+                )}
+              </div>
+            )}
           </article>
         ))}
       </div>
