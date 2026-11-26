@@ -1,105 +1,58 @@
-'use client';
-
-import { motion, useReducedMotion } from 'framer-motion';
-import { ArrowRight, Github } from 'lucide-react';
-import { Spotlight } from '@/components/ui/Spotlight';
-import { DotPattern } from '@/components/ui/DotPattern';
-import { ShimmerButton } from '@/components/ui/ShimmerButton';
 import { orgUrl } from '@/data/products';
+import { buttonVariants } from '@/components/ui/button';
 
-const headline = ['Plan', 'less.', 'Learn', 'more.'];
+const sections = [
+  { href: '#tools', number: '01', label: 'Tools', detail: 'Five open projects' },
+  { href: '#mission', number: '02', label: 'Mission', detail: 'Why we build them' },
+  { href: '#contribute', number: '03', label: 'Contribute', detail: 'Three ways to help' },
+];
 
 export function Hero() {
-  const reduceMotion = useReducedMotion();
-
   return (
-    <section id="top" className="relative overflow-hidden">
-      {/* ambient color wash: pure CSS, slow drift, no canvas (replaces the old WebGL mesh gradient) */}
-      <div className="absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
-        <div className="animate-hero-glow absolute -top-24 left-[8%] h-[28rem] w-[28rem] rounded-full bg-[var(--primary)]/25 blur-3xl motion-reduce:animate-none" />
-        <div className="animate-hero-glow absolute -top-10 right-[6%] h-[24rem] w-[24rem] rounded-full bg-[var(--accent)]/20 blur-3xl [animation-delay:-7s] motion-reduce:animate-none" />
-      </div>
-
-      {/* dot-grid field, faded out toward the bottom edge */}
-      <div
-        className="absolute inset-0"
-        style={{
-          maskImage: 'radial-gradient(ellipse 120% 90% at 50% 0%, black 55%, transparent 100%)',
-          WebkitMaskImage: 'radial-gradient(ellipse 120% 90% at 50% 0%, black 55%, transparent 100%)',
-        }}
-        aria-hidden="true"
-      >
-        <DotPattern glow={!reduceMotion} className="text-[var(--grid-line-bold)]" />
-      </div>
-      <Spotlight className="-top-40 left-0 md:-top-20 md:left-60" />
-
-      <div className="relative mx-auto max-w-6xl px-4 pb-24 pt-36 sm:px-6 sm:pb-32 sm:pt-44 lg:px-8">
-        <motion.p
-          initial={reduceMotion ? false : { opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="font-mono text-xs uppercase tracking-[0.25em] text-[var(--accent-strong)]"
-        >
-          Open-source tools for students
-        </motion.p>
-
-        <h1 className="mt-6 max-w-3xl font-heading text-5xl font-semibold leading-[1.05] text-[var(--heading)] sm:text-6xl md:text-7xl">
-          {headline.map((word, i) => (
-            <motion.span
-              key={word + i}
-              initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.15 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
-              className={`inline-block ${i >= 2 ? 'text-[var(--primary)]' : ''}`}
-            >
-              {word}
-              {i < headline.length - 1 ? ' ' : ''}
-            </motion.span>
-          ))}
+    <section id="top" className="border-b border-[var(--border)]">
+      <div className="mx-auto max-w-6xl px-4 pb-20 pt-32 sm:px-6 sm:pb-24 sm:pt-40 lg:px-8">
+        <h1 className="max-w-4xl font-heading text-5xl font-semibold leading-[1.05] tracking-[-0.03em] text-[var(--heading)] sm:text-6xl md:text-7xl">
+          Plan less. Learn more.
         </h1>
 
-        <motion.p
-          initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.7 }}
-          className="mt-6 max-w-xl text-lg leading-relaxed text-[var(--body)]"
-        >
-          Free, open tools built around one idea: students deserve better software. Shaped by
-          rigorous programs like IGCSE and IB, but open to any student, anywhere.
-        </motion.p>
+        <p className="mt-7 max-w-2xl text-lg leading-relaxed text-[var(--body)]">
+          StudyMap, a skills-and-plugins collection, and three curated resource lists — built in
+          public, free to use, and MIT licensed.
+        </p>
 
-        <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.85 }}
-          className="mt-10 flex flex-wrap items-center gap-4"
-        >
-          <ShimmerButton href="#tools" className="group">
+        <div className="mt-9 flex flex-wrap items-center gap-3">
+          <a
+            href="#tools"
+            className={buttonVariants({ className: 'h-11 gap-2 px-6 dark:text-[#0e0e1a]' })}
+          >
             Explore the tools
-            <ArrowRight
-              className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
-              aria-hidden="true"
-            />
-          </ShimmerButton>
+          </a>
           <a
             href={orgUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-lg border border-[var(--border-strong)] px-6 py-3 font-medium text-[var(--heading)] transition-colors hover:border-[var(--primary)] hover:text-[var(--primary)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--primary)]"
+            className={buttonVariants({ variant: 'outline', className: 'h-11 gap-2 px-6' })}
           >
-            <Github className="h-4 w-4" aria-hidden="true" />
-            Follow on GitHub
+            GitHub
           </a>
-        </motion.div>
+        </div>
 
-        <motion.p
-          initial={reduceMotion ? false : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 1.05 }}
-          className="mt-12 font-mono text-xs text-[var(--muted)]"
+        <nav
+          aria-label="On this page"
+          className="mt-14 grid max-w-2xl gap-px overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--border)] sm:grid-cols-3"
         >
-          MIT licensed · built by students, for students
-        </motion.p>
+          {sections.map((section) => (
+            <a
+              key={section.href}
+              href={section.href}
+              className="bg-[var(--background)] px-5 py-4 transition-colors hover:bg-[var(--muted-surface)] active:bg-[var(--primary-soft)] focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[var(--primary)]"
+            >
+              <span className="font-mono text-[11px] text-[var(--muted)]">{section.number}</span>
+              <span className="mt-1.5 block font-medium text-[var(--heading)]">{section.label}</span>
+              <span className="mt-0.5 block text-xs text-[var(--secondary)]">{section.detail}</span>
+            </a>
+          ))}
+        </nav>
       </div>
     </section>
   );

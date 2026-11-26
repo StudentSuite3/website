@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 
 import { docsPages } from "@/lib/docs-nav";
 
-/** 2-3 same-group siblings, reusing the existing docs-nav.ts `group` field -- no new data needed. */
 export function RelatedDocs() {
   const pathname = usePathname();
   const current = docsPages.find((entry) => entry.href === pathname);
@@ -19,15 +18,15 @@ export function RelatedDocs() {
 
   return (
     <nav aria-label="Related docs" className="mt-10 border-t border-border pt-8">
-      <p className="kicker mb-4">Related</p>
+      <p className="mb-4 font-mono text-xs text-muted-foreground">Related</p>
       <div className="grid gap-4 sm:grid-cols-3">
         {related.map((entry) => (
           <Link
             key={entry.href}
             href={entry.href}
-            className="group flex flex-col gap-1.5 rounded-lg border border-border p-4 transition-colors hover:border-primary/50 hover:bg-muted/40"
+            className="group flex flex-col gap-1.5 rounded-lg border border-border p-4 transition-colors hover:border-primary/50"
           >
-            <span className="font-medium text-foreground">{entry.title}</span>
+            <span className="font-medium text-foreground group-hover:underline">{entry.title}</span>
             <span className="text-sm text-muted-foreground">{entry.description}</span>
           </Link>
         ))}

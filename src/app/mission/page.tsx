@@ -5,7 +5,7 @@ import { Footer } from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'Mission',
-  description: 'Students deserve better software. Why StudentSuite exists and who it is for.',
+  description: 'Why StudentSuite builds free, open tools for students, and who they are for.',
 };
 
 export default function MissionPage() {

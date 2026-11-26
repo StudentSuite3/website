@@ -15,13 +15,7 @@ const HEADING_PATTERN = /^## (.+)/;
 const SUBHEADING_PATTERN = /^### (.+)/;
 const ENTRY_PATTERN = /^- \*\*\[(.+?)\]\((.+?)\)\*\*\s*-\s*(.+)$/;
 
-/**
- * The page prints descriptions as plain text, so Markdown that renders on
- * GitHub has to become text here (#11): a shields.io badge becomes its alt
- * text in parentheses ("... Word files ![free](...)." -> "... Word files
- * (free)."), which reads the same as the lists' older "(free)." style, and
- * inline code loses its backticks.
- */
+/** Badges become their alt text and inline code loses its backticks for plain-text rendering. */
 export function cleanDescription(text: string): string {
   return text
     .replace(/\s*!\[([^\]]*)\]\([^)]*\)/g, " ($1)")
@@ -34,7 +28,7 @@ export function cleanDescription(text: string): string {
 /**
  * Groups `- **[Name](url)** - description` bullets under their nearest `##`
  * heading, recording the nearest `###` under it as the entry's subsection.
- * Matches the entry format all 3 StudentSuite awesome-list repos already
+ * Matches the entry format every StudentSuite awesome-list repo already
  * enforce via their own check-list-format.mjs / update-counts.mjs. Sections
  * with no matching bullets (Table of Contents, Contributing, License, ...)
  * end up empty and are dropped, so no heading skip-list is needed here.
@@ -77,13 +71,8 @@ const RETRIES = 3;
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 /**
- * Fetches a StudentSuite awesome-list README and parses it into sections.
- *
- * Each attempt times out after 15s, and a network error or 5xx/429 is retried
- * up to three times with backoff (#10). After the last retry it still throws,
- * so the build fails and the previous deploy stays live: better than
- * publishing an empty list. A 4xx other than 429 fails at once, since
- * retrying a missing repo cannot help.
+ * Fetch and parse a list README at build time. Transient failures are retried
+ * so one bad response cannot blank the published list; 4xx errors fail at once.
  */
 export async function fetchAwesomeList(
   repo: string,

@@ -13,7 +13,7 @@ export default function DocsIndexPage() {
   return (
     <>
       <DocsHeader />
-      <PageContainer width="content">
+      <PageContainer>
         <DocsIndex />
       </PageContainer>
     </>

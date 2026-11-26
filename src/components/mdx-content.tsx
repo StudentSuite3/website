@@ -3,10 +3,7 @@ import Link from "next/link";
 
 import { cn } from "@/lib/utils";
 
-/**
- * Explicit element styling for MDX content. Used instead of a typography
- * plugin so the look stays in our control and matches the brand tokens.
- */
+/** Explicit element styling keeps Markdown output on the site's type scale. */
 export const mdxComponents = {
   h1: ({ className, ...props }: ComponentPropsWithoutRef<"h1">) => (
     <h1
@@ -74,11 +71,7 @@ export const mdxComponents = {
   hr: ({ className, ...props }: ComponentPropsWithoutRef<"hr">) => (
     <hr className={cn("my-8 border-border", className)} {...props} />
   ),
-  // Fenced code blocks land as `<pre><code>`, with or without a language
-  // className depending on whether the fence declares one (` ``` ` vs
-  // ` ```ts `) - resetting the inline `code` pill styling via a `pre >
-  // code` selector here works either way, instead of trying to detect
-  // "is this inline or block" from the code element alone.
+  // Reset inline-code styling on fenced blocks whether or not a language class is present.
   pre: ({ className, ...props }: ComponentPropsWithoutRef<"pre">) => (
     <pre
       className={cn(

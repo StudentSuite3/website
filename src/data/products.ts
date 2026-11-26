@@ -1,7 +1,6 @@
 export interface Product {
   id: string;
   name: string;
-  emoji: string;
   status: 'Live' | 'Curated';
   pitch: string;
   description: string;
@@ -14,11 +13,10 @@ export const products: Product[] = [
   {
     id: 'studymap',
     name: 'StudyMap',
-    emoji: '🗺️',
     status: 'Live',
-    pitch: 'The places every student should know, on one map.',
+    pitch: 'A map of study spots and exam centres.',
     description:
-      'Study spots, exam centres, libraries, and resources that actually matter: vetted, organized, and growing as the community adds to it. Now with a docs hub for curated lists, optional sign-in for saved places, and self-hosting for any city.',
+      'Find libraries, quiet places to study, and exam centres near you. Entries are reviewed before they go live, and the city data can be self-hosted.',
     githubUrl: 'https://github.com/StudentSuite/StudyMap',
     liveUrl: 'https://studyymap.com',
     cta: 'Open the map',
@@ -26,11 +24,10 @@ export const products: Product[] = [
   {
     id: 'skills-plugins',
     name: 'Skills & Plugins for Students',
-    emoji: '🧩',
     status: 'Curated',
-    pitch: 'AI-tooling setups that just work.',
+    pitch: 'Skills and plugins for AI coding assistants.',
     description:
-      'Community-curated skills, plugins, and configs for Claude Code, Cursor, Copilot, and more, organized by what you are trying to do. Copy a folder, drop it into your editor, done.',
+      'Skills, plugins, and configs for Claude Code, Cursor, and Copilot, grouped by the task you are trying to do. Copy a folder into your editor and you are set.',
     githubUrl: 'https://github.com/StudentSuite/awesome-skills-plugins-for-students',
     liveUrl: 'https://studyymap.com/docs/awesome-skills-plugins',
     cta: 'Browse the collection',
@@ -38,11 +35,10 @@ export const products: Product[] = [
   {
     id: 'awesome-resources',
     name: 'Awesome Student Resources',
-    emoji: '📚',
     status: 'Curated',
-    pitch: 'The best tools and resources, labelled honestly.',
+    pitch: 'A labelled index of study tools.',
     description:
-      'Software, textbooks, channels, and tools organized by subject and by what you need to get done. Free, freemium, paid, and open-source picks, each labelled so you know before you click.',
+      'Software, textbooks, and channels by subject. Every entry says whether it is free, freemium, paid, or open source.',
     githubUrl: 'https://github.com/StudentSuite/awesome-student-resources',
     liveUrl: 'https://studyymap.com/docs/awesome-student-resources',
     cta: 'Browse the list',
@@ -50,13 +46,23 @@ export const products: Product[] = [
   {
     id: 'awesome-study-resources',
     name: 'Awesome Study Resources',
-    emoji: '🎓',
     status: 'Curated',
-    pitch: 'Exam prep and subject-study resources, sorted by what you are studying for.',
+    pitch: 'Exam prep and subject guides, kept separate.',
     description:
-      'Curated exam prep, subject-study, and learning-tool resources: split out from Awesome Student Resources to keep both lists focused. Free, freemium, and paid picks, each labelled.',
+      'Revision material and learning tools split out from the general list, so exam-prep resources are easier to find. Every entry is labelled by price.',
     githubUrl: 'https://github.com/StudentSuite/awesome-study-resources',
     liveUrl: 'https://studyymap.com/docs/awesome-study-resources',
+    cta: 'Browse the list',
+  },
+  {
+    id: 'awesome-sat-resources',
+    name: 'Awesome SAT Resources',
+    status: 'Curated',
+    pitch: 'Free SAT prep, in one place.',
+    description:
+      'Practice tests, formula sheets, video lessons, vocab lists, and study communities for the digital SAT. Every entry is free.',
+    githubUrl: 'https://github.com/StudentSuite/awesome-sat-resources',
+    liveUrl: 'https://studyymap.com/docs/awesome-sat-resources',
     cta: 'Browse the list',
   },
 ];

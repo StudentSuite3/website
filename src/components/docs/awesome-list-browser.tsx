@@ -15,12 +15,7 @@ interface AwesomeListBrowserProps {
   repoUrl: string;
 }
 
-/**
- * Search + section-filter table for an awesome-list docs page. Replaces a
- * plain scroll-through-every-section layout with the map's own interaction
- * language (filter, then scan), which matters once a list crosses ~100
- * entries (awesome-study-resources has 193).
- */
+/** Lists longer than ~100 entries get search and section filters to stay scannable. */
 export function AwesomeListBrowser({ sections, repoName, repoUrl }: AwesomeListBrowserProps) {
   const [query, setQuery] = useState("");
   const [activeSection, setActiveSection] = useState<string | null>(null);

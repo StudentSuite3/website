@@ -10,7 +10,7 @@ function subscribe(onChange: () => void) {
   return () => query.removeEventListener('change', onChange);
 }
 
-/** Gates the mobile nav's plain-CSS slide transition; framer-motion's own useReducedMotion() only covers framer animations. */
+/** Tracks the user's reduced-motion setting for CSS-driven transitions. */
 export function usePrefersReducedMotion() {
   return useSyncExternalStore(
     subscribe,

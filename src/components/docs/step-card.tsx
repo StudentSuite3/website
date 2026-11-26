@@ -10,12 +10,7 @@ interface StepCardProps {
   isLast?: boolean;
 }
 
-/**
- * A single step in a genuinely sequential guide (numbered badge + connector
- * line to the next step). Use only for real step-by-step order; a related
- * but non-sequential card (a callout, a reference list) should render as a
- * plain Card instead so the stepper doesn't imply an order that isn't there.
- */
+/** Use only for real ordered steps; unrelated content belongs in CalloutCard. */
 export function StepCard({ step, title, description, children, isLast }: StepCardProps) {
   return (
     <div className="relative flex gap-4">

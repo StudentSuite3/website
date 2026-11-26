@@ -6,13 +6,6 @@ import { DocsIndexList } from "@/components/docs/docs-index-list";
 
 const STORAGE_KEY = "studymap:docs-view";
 
-/**
- * The /docs index body: a list/grid toggle (see #202's ViewToggle, reused
- * as-is) over the same grouped entries. Always renders "list" on the
- * server and first paint, then syncs from localStorage in an effect (see
- * useViewMode), so there's no hydration mismatch and no error when storage
- * is unavailable - just the list default either way.
- */
 export function DocsIndex() {
   const [mode, setMode] = useViewMode(STORAGE_KEY);
 

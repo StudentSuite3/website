@@ -8,8 +8,8 @@ StudentSuite's website is a Next.js 16 static-export site: every page is pre-ren
 src/
 ├── app/                   App Router pages
 │   ├── layout.tsx         Root layout (fonts, analytics, dark-mode script)
-│   ├── page.tsx           Homepage (Hero, Products, Mission, Contribute, Updates)
-│   ├── globals.css        Tailwind v4 theme tokens, graph-paper motif, kicker
+│   ├── page.tsx           Homepage (Hero, Products, Mission, Contribute)
+│   ├── globals.css        Tailwind v4 theme tokens and base styles
 │   ├── sitemap.ts         Static sitemap
 │   ├── opengraph-image.tsx  Generated OG image
 │   ├── tools/             /tools page
@@ -24,8 +24,8 @@ src/
 ├── components/
 │   ├── Header.tsx         Site header with nav and theme toggle
 │   ├── Footer.tsx         Site footer
-│   ├── Hero.tsx           Homepage hero with dot-pattern + ambient glow
-│   ├── Products.tsx       Tools grid (id-based lookup)
+│   ├── Hero.tsx           Typographic homepage hero
+│   ├── Products.tsx       Tools grid, rendered from the data array
 │   ├── Updates.tsx        Recent activity feed
 │   ├── Mission.tsx        Mission section
 │   ├── MobileNav.tsx      Full-screen mobile nav

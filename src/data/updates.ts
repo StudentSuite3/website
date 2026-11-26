@@ -17,6 +17,16 @@ export interface UpdateEntry {
  */
 export const updates: UpdateEntry[] = [
   {
+    id: 'awesome-sat-resources-launch',
+    repo: 'Awesome SAT Resources',
+    repoUrl: 'https://github.com/StudentSuite/awesome-sat-resources',
+    date: '2026-11-11',
+    title: 'A list dedicated to the SAT',
+    description:
+      'First release of the sister list for the digital SAT: practice tests, video lessons, vocab, and communities. Every entry is free.',
+    changelogUrl: 'https://github.com/StudentSuite/awesome-sat-resources/blob/main/CHANGELOG.md',
+  },
+  {
     id: 'website-nav-and-updates',
     repo: 'Website',
     date: '2026-08-26',

@@ -7,13 +7,7 @@ interface DocsProseProps {
   className?: string;
 }
 
-/**
- * Comfortable article typography for doc body content: capped line length,
- * generous vertical rhythm, headings in the heading font. Hand-rolled
- * descendant utilities rather than @tailwindcss/typography (not installed;
- * the plugin's default scale would fight the amber/zinc CSS-var tokens
- * already set up here).
- */
+/** Descendant styles keep Markdown output on the site's type scale. */
 export function DocsProse({ children, className }: DocsProseProps) {
   return (
     <div

@@ -10,7 +10,7 @@ const jetbrainsMono = JetBrains_Mono({ variable: '--font-jetbrains-mono', subset
 
 const title = 'StudentSuite: open-source tools that help students plan less and learn more';
 const description =
-  'Free, open tools built around one idea: students deserve better software. Shaped by rigorous programs like IGCSE and IB, but open to any student, anywhere.';
+  'A map of study places, a collection of AI coding skills and plugins, and three curated resource lists. Built in public, free to use, and MIT licensed.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),

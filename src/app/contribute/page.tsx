@@ -6,7 +6,7 @@ import { Footer } from '@/components/Footer';
 export const metadata: Metadata = {
   title: 'Contribute',
   description:
-    'The suite gets better when students build it together. How to star, add, and open issues on StudentSuite repos.',
+    'Three ways to help: add an entry, report a problem, or star a StudentSuite repository.',
 };
 
 export default function ContributePage() {

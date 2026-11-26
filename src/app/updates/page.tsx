@@ -5,7 +5,7 @@ import { Footer } from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'Updates',
-  description: 'Recent activity across every StudentSuite repo.',
+  description: 'A hand-picked log of changes across the StudentSuite repositories.',
 };
 
 export default function UpdatesPage() {

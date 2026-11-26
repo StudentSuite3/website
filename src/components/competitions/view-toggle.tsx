@@ -20,23 +20,14 @@ function writeStoredViewMode(storageKey: string, mode: ViewMode): void {
   try {
     window.localStorage.setItem(storageKey, mode);
   } catch {
-    // The choice just won't persist; nothing else to do about it.
+    // Storage may be unavailable; the in-memory choice still applies.
   }
 }
 
-/**
- * List/grid view preference, persisted to `localStorage` under `storageKey`
- * so different pages (competitions browse, the docs index in #205) don't
- * collide. Always starts on `"list"` and reads the stored value in an
- * effect - never during the initial render - so the server render and the
- * client's first paint agree; the real preference (if any) applies a beat
- * later, trading a possible one-frame flash for zero hydration risk.
- */
+/** Storage is read after mount so the server render and first client paint agree. */
 export function useViewMode(storageKey: string): [ViewMode, (mode: ViewMode) => void] {
   const [mode, setModeState] = useState<ViewMode>("list");
 
-  // Mount-only sync from localStorage to avoid an SSR/hydration mismatch,
-  // same convention as ThemeToggle's `mounted` flag.
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setModeState(readStoredViewMode(storageKey));
@@ -56,7 +47,6 @@ interface ViewToggleProps {
   className?: string;
 }
 
-/** Two-state segmented list/grid control, each option a labeled real button. */
 export function ViewToggle({ value, onChange, className }: ViewToggleProps) {
   return (
     <div

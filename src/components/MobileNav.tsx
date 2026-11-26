@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import Link from 'next/link';
 import { createPortal } from 'react-dom';
 import { usePathname } from 'next/navigation';
@@ -15,26 +15,20 @@ interface NavLink {
   label: string;
 }
 
-/**
- * Full-screen portalled mobile nav. Portalled to `document.body` because the
- * header is `fixed`, and layering `fixed inset-0` inside another fixed
- * element without a portal risks stacking-context surprises as the header
- * gains more treatments later. Body scroll lock + focus trap + Escape close
- * make this behave like a real dialog rather than a decorative overlay.
- * Theme toggle stays in the always-visible collapsed bar, not duplicated here.
- */
+/** Portalled to body so the fixed header cannot clip the full-screen panel. */
 export function MobileNav({ links }: { links: NavLink[] }) {
-  // The menu is open for the path it was opened on, so navigating closes it
-  // without an effect that sets state after every route change.
+  // Open state is tied to the path, so a route change closes the panel.
   const pathname = usePathname();
   const [openOn, setOpenOn] = useState<string | null>(null);
   const open = openOn === pathname;
-  const setOpen = (next: boolean | ((v: boolean) => boolean)) =>
-    setOpenOn((current) => {
-      const value = typeof next === 'function' ? next(current === pathname) : next;
-      return value ? pathname : null;
-    });
-  // The portal target only exists in the browser.
+  const setOpen = useCallback(
+    (next: boolean | ((v: boolean) => boolean)) =>
+      setOpenOn((current) => {
+        const value = typeof next === 'function' ? next(current === pathname) : next;
+        return value ? pathname : null;
+      }),
+    [pathname],
+  );
   const mounted = useSyncExternalStore(
     () => () => {},
     () => true,
@@ -81,7 +75,7 @@ export function MobileNav({ links }: { links: NavLink[] }) {
       document.body.style.overflow = previousOverflow;
       document.removeEventListener('keydown', onKeyDown);
     };
-  }, [open]);
+  }, [open, setOpen]);
 
   function close() {
     setOpen(false);

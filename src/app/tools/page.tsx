@@ -6,7 +6,7 @@ import { Footer } from '@/components/Footer';
 export const metadata: Metadata = {
   title: 'Tools',
   description:
-    'The suite so far: every free, open-source tool StudentSuite ships for students.',
+    'Five open projects: a map of study places, a skills-and-plugins collection, and three curated resource lists.',
 };
 
 export default function ToolsPage() {

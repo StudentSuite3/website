@@ -17,9 +17,6 @@ export default function Image() {
           justifyContent: 'center',
           padding: '90px',
           background: '#ffffff',
-          backgroundImage:
-            'radial-gradient(circle at 26px 26px, rgba(79,70,229,0.12) 2px, transparent 0)',
-          backgroundSize: '52px 52px',
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
@@ -60,7 +57,7 @@ export default function Image() {
         </div>
 
         <div style={{ display: 'flex', marginTop: 28, fontSize: 26, color: '#3f3f52', maxWidth: 760 }}>
-          Free, open tools built around one idea: students deserve better software.
+          Study places, AI coding skills, and curated lists for students — free and MIT licensed.
         </div>
       </div>
     ),

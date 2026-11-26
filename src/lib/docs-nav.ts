@@ -3,6 +3,7 @@ import {
   BookOpen,
   CalendarDays,
   CircleHelp,
+  ClipboardList,
   Database,
   Download,
   FileJson,
@@ -21,11 +22,7 @@ import {
 
 export type DocsGroup = "Guides" | "Awesome Lists" | "Contributing" | "Developers";
 
-/**
- * The one place the group order is stated. The sidebar and the /docs index
- * (list and grid views) all read this instead of each keeping their own copy,
- * so they can't drift out of sync with each other.
- */
+/** Single source for group order across the sidebar and both index views. */
 export const DOCS_GROUPS: DocsGroup[] = [
   "Guides",
   "Awesome Lists",
@@ -44,12 +41,7 @@ export interface DocsNavEntry {
   group?: DocsGroup;
 }
 
-/**
- * Single source of truth for every /docs route: title, blurb, icon, and
- * sidebar group. Read by the docs index grid, the sidebar nav, the
- * full-bleed page header (via docs/layout.tsx), and the prev/next pager,
- * so none of them can drift out of sync with each other.
- */
+/** Single source for each /docs route's title, blurb, icon, and group. */
 export const docsNav: DocsNavEntry[] = [
   {
     href: "/docs",
@@ -121,8 +113,7 @@ export const docsNav: DocsNavEntry[] = [
   {
     href: "/docs/awesome-student-resources",
     title: "Awesome Student Resources",
-    description:
-      "Curated software, tools, textbooks, and channels for students, synced daily from the awesome-student-resources list.",
+    description: "Curated software, tools, textbooks, and channels for students.",
     icon: BookOpen,
     iconClassName: "text-primary",
     group: "Awesome Lists",
@@ -130,17 +121,23 @@ export const docsNav: DocsNavEntry[] = [
   {
     href: "/docs/awesome-study-resources",
     title: "Awesome Study Resources",
-    description:
-      "Curated exam prep, subject-study, and learning-tool resources, synced daily from the awesome-study-resources list.",
+    description: "Curated exam prep, subject-study, and learning-tool resources.",
     icon: GraduationCap,
+    iconClassName: "text-primary",
+    group: "Awesome Lists",
+  },
+  {
+    href: "/docs/awesome-sat-resources",
+    title: "Awesome SAT Resources",
+    description: "Free SAT practice tests, formula sheets, video lessons, vocab, and communities.",
+    icon: ClipboardList,
     iconClassName: "text-primary",
     group: "Awesome Lists",
   },
   {
     href: "/docs/awesome-skills-plugins",
     title: "Awesome Skills & Plugins",
-    description:
-      "Curated AI coding agent skills and plugins for students, synced daily from the awesome-skills-plugins-for-students list.",
+    description: "Curated AI coding agent skills and plugins for students.",
     icon: Puzzle,
     iconClassName: "text-primary",
     group: "Awesome Lists",

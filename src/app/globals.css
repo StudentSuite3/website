@@ -20,18 +20,10 @@
   --border-strong: #d6d6e2;
   --card-bg: rgba(255, 255, 255, 0.8);
   --card-border: #e7e7ef;
-  --card-hover-border: #c7c5f4;
-  --card-hover-shadow: 0 12px 32px -12px rgba(79, 70, 229, 0.18);
   --nav-bg: var(--background);
   --mobile-bg: var(--background);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --duration-fast: 170ms;
   --duration-med: 280ms;
-  --duration-slow: 450ms;
-  --grid-line: rgba(79, 70, 229, 0.07);
-  --grid-line-bold: rgba(79, 70, 229, 0.13);
-  --spotlight-fill: #4f46e5;
-  --spotlight-opacity: 0.10;
   --pill-bg: rgba(20, 184, 166, 0.1);
   --pill-fg: #0f766e;
   --mission-bg: #4f46e5;
@@ -73,14 +65,8 @@ html.dark {
   --border-strong: #31314e;
   --card-bg: rgba(24, 24, 42, 0.6);
   --card-border: #23233a;
-  --card-hover-border: #45457a;
-  --card-hover-shadow: 0 12px 32px -12px rgba(129, 140, 248, 0.16);
   --nav-bg: var(--background);
   --mobile-bg: var(--background);
-  --grid-line: rgba(129, 140, 248, 0.07);
-  --grid-line-bold: rgba(129, 140, 248, 0.13);
-  --spotlight-fill: #818cf8;
-  --spotlight-opacity: 0.14;
   --pill-bg: rgba(45, 212, 191, 0.12);
   --pill-fg: #5eead4;
   --mission-bg: #1e1b4b;
@@ -125,112 +111,6 @@ html.dark {
   --font-sans: var(--font-inter);
   --font-heading: var(--font-space-grotesk);
   --font-mono: var(--font-jetbrains-mono);
-
-  /* aceternity spotlight (sourced via the `components` skill) */
-  --animate-spotlight: spotlight 2.4s ease-out 0.3s 1 forwards;
-
-  /* magic ui shimmer button (sourced via the `components` skill) */
-  --animate-shimmer-slide: shimmer-slide var(--speed) ease-in-out infinite alternate;
-  --animate-spin-around: spin-around calc(var(--speed) * 2) infinite linear;
-
-  /* hero ambient glow: slow CSS-only drift, replaces the old WebGL mesh gradient */
-  --animate-hero-glow: hero-glow-drift 14s ease-in-out infinite alternate;
-
-  /* per-project motif animations */
-  --animate-plugin-scale: plugin-scale 0.5s var(--ease-out) forwards;
-  --animate-book-float: book-float 4s ease-in-out infinite alternate;
-}
-
-@keyframes spotlight {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -42%) scale(1.05);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(-50%, -40%) scale(1);
-  }
-}
-
-@keyframes shimmer-slide {
-  to {
-    transform: translate(calc(100cqw - 100%), 0);
-  }
-}
-
-@keyframes hero-glow-drift {
-  0% {
-    transform: translate(0, 0) scale(1);
-  }
-  100% {
-    transform: translate(4%, -5%) scale(1.12);
-  }
-}
-
-@keyframes spin-around {
-  0% {
-    transform: translateZ(0) rotate(0);
-  }
-  15%,
-  35% {
-    transform: translateZ(0) rotate(90deg);
-  }
-  65%,
-  85% {
-    transform: translateZ(0) rotate(270deg);
-  }
-  100% {
-    transform: translateZ(0) rotate(360deg);
-  }
-}
-
-@keyframes plugin-scale {
-  0% { opacity: 0; transform: scale(0.5); }
-  100% { opacity: 1; transform: scale(1); }
-}
-
-@keyframes book-float {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-4px); }
-}
-
-@keyframes marquee-scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-@keyframes vertical-marquee-scroll {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-50%); }
-}
-
-@keyframes bento-pop {
-  0% { opacity: 0; transform: scale(0.5); }
-  100% { opacity: 1; transform: scale(1); }
-}
-
-/* kicker: overline/eyebrow label used in docs and section headers */
-.kicker {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 400;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--primary);
-}
-
-/* graph-paper: the student notebook motif */
-.graph-paper {
-  background-image:
-    linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
-    linear-gradient(var(--grid-line-bold) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line-bold) 1px, transparent 1px);
-  background-size:
-    24px 24px,
-    24px 24px,
-    120px 120px,
-    120px 120px;
 }
 
 .no-transition * {
@@ -245,6 +125,30 @@ body {
 
 html {
   scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  :root {
+    --card-bg: #ffffff;
+    --card: #ffffff;
+  }
+  html.dark {
+    --card-bg: #18182a;
+    --card: #18182a;
+  }
 }
 
 ::selection {

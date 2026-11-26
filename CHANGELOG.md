@@ -14,12 +14,13 @@ This project hasn't tagged a release yet; everything so far lives under Unreleas
   StudentSuite org.
 - A full-screen mobile nav (portalled, focus-trapped, closes on Escape),
   replacing the inline dropdown menu.
+- Awesome SAT Resources in the tools list, docs, and updates feed.
 
 ### Changed
 
-- Hero background: replaced the animated WebGL mesh-gradient with fluid-
-  simulation cursor with a lighter CSS-only dot-pattern and ambient glow
-  drift, alongside a refresh of the product cards.
+- Hero and product cards rebuilt as flat, typographic sections. Removed the
+  spotlight, shimmer button, dot-pattern field, ambient glow drift, dock
+  magnification, marquees, pinging status dot, and scroll-reveal staggers.
 - Header is now permanently solid (`--nav-bg` tracks `--background` at full
   opacity) instead of transparent-until-scroll. The transparent state
   caused low-contrast nav text on `/mission`, whose hero section sits
@@ -28,14 +29,14 @@ This project hasn't tagged a release yet; everything so far lives under Unreleas
 - Contact link switched from a plain `mailto:` to a Gmail compose URL, and
   the contact email updated to `studentsuite3@gmail.com`.
 - Canonical domain pointed at `thestudentsuite.com`.
-- Vercel Web Analytics is installed and active. A previous entry here said it
-  had been reverted and analytics stayed off, which was never true:
-  `<Analytics />` has been mounted in the root layout the whole time.
-- Retired Awesome AI Prompts from the tools grid and the updates feed. The products grid is now four cards in two even rows rather than a
-  six-card bento with hand-placed spans.
-- `Products.tsx` looks products up by id instead of destructuring the data
-  array by position, so removing or reordering an entry can no longer shift
-  every card onto the wrong product.
+- Vercel Web Analytics is installed and active.
+- Retired Awesome AI Prompts from the tools grid and the updates feed. The
+  products grid is now four cards in two even rows rather than a six-card bento
+  with hand-placed spans.
+- Products render directly from the data array, so reordering or removing an
+  entry cannot shift a card onto the wrong product.
+- Landing-page copy rewritten around specific claims, and repeated taglines
+  and generic CTAs removed.
 
 ### Fixed
 

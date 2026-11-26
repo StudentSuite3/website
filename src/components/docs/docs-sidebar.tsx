@@ -18,7 +18,7 @@ function DocsNavList({ pathname, onNavigate }: { pathname: string; onNavigate?: 
         if (items.length === 0) return null;
         return (
           <div key={group}>
-            <p className="kicker mb-2">{group}</p>
+            <p className="mb-2 font-mono text-xs text-muted-foreground">{group}</p>
             <ul className="flex flex-col gap-0.5">
               {items.map((entry) => {
                 const active = pathname === entry.href;
@@ -48,7 +48,6 @@ function DocsNavList({ pathname, onNavigate }: { pathname: string; onNavigate?: 
   );
 }
 
-/** Persistent left sidebar, desktop only (lg+). */
 export function DocsDesktopSidebar() {
   const pathname = usePathname();
 
@@ -61,7 +60,6 @@ export function DocsDesktopSidebar() {
   );
 }
 
-/** Full-width "Docs menu" trigger + Sheet drawer, mobile only (below lg). */
 export function DocsMobileNav() {
   const pathname = usePathname();
   const [open, setOpen] = React.useState(false);

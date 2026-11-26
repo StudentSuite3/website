@@ -12,7 +12,7 @@ export function Footer() {
                 Student<span className="text-[var(--primary)]">Suite</span>
               </span>
               <p className="mt-1 max-w-xs text-sm leading-relaxed text-[var(--secondary)]">
-                Open-source tools that help students plan less and learn more.
+                Study places, AI coding skills, and curated lists for students.
               </p>
             </div>
           </div>
@@ -146,7 +146,7 @@ export function Footer() {
 
         <div className="mt-14 flex flex-col gap-3 border-t border-[var(--border)] pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="font-mono text-xs text-[var(--muted)]">
-            MIT licensed · built by students, for students
+            All source code is MIT licensed.
           </p>
         </div>
       </div>

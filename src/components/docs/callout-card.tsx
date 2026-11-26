@@ -10,12 +10,7 @@ interface CalloutCardProps {
   className?: string;
 }
 
-/**
- * A card deliberately outside the numbered step sequence (a support link, a
- * reference list). Dashed border + muted background keep it visually
- * distinct from StepCard so a reader scanning steps doesn't mistake it for
- * the next step in order.
- */
+/** Dashed styling marks content that is not a numbered step. */
 export function CalloutCard({ title, description, children, className }: CalloutCardProps) {
   return (
     <Card className={cn("border border-dashed border-border bg-muted/40", className)}>
