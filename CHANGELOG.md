@@ -31,8 +31,7 @@ This project hasn't tagged a release yet; everything so far lives under Unreleas
 - Vercel Web Analytics is installed and active. A previous entry here said it
   had been reverted and analytics stayed off, which was never true:
   `<Analytics />` has been mounted in the root layout the whole time.
-- Retired Pepiros and Awesome AI Prompts from the tools grid and the updates
-  feed. The products grid is now four cards in two even rows rather than a
+- Retired Awesome AI Prompts from the tools grid and the updates feed. The products grid is now four cards in two even rows rather than a
   six-card bento with hand-placed spans.
 - `Products.tsx` looks products up by id instead of destructuring the data
   array by position, so removing or reordering an entry can no longer shift
